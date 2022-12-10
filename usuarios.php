@@ -2,12 +2,6 @@
 // Recupérase a información da sesión
 session_start();
 // Comprobase que o usuario se autenticou
-if (!isset($_SESSION['usuario'])) {
-    header("Location: login.php");
-}
-if ($_SESSION['rol'] != 'Administrador') {
-    die("Error, usuario sin permisos requeridos, por favor haga login <a href='login.php'>aqui</a>.<br />");
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,13 +11,7 @@ if ($_SESSION['rol'] != 'Administrador') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuarios</title>
-    <link rel="stylesheet" href="./CSS/hoja<?php
-
-                                            if (isset($_COOKIE['tema'])) {
-                                                echo $_COOKIE['tema'];
-                                            } else {
-                                                echo "Clara";
-                                            } ?>.css">
+    <link rel="stylesheet" href="./CSS/hojaClara.css">
     <style>
         body {
             font-size: <?php if (isset($_COOKIE['tamano'])) {
@@ -133,7 +121,7 @@ if ($_SESSION['rol'] != 'Administrador') {
 
             array_push($introducir, "Usuario");
 
-            $objeto = new Usuario($introducir[0], $introducir[1], $introducir[2], $introducir[3], $introducir[4], $introducir[5]);
+            $objeto = new Usuario($introducir[0], $introducir[1], $introducir[2], $introducir[3], $introducir[4]);
             array_push($datos, $objeto);
 
             $DAO->escribirArrayUsuarios($datos);

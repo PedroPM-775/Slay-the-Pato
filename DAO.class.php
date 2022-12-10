@@ -1,6 +1,5 @@
 <?php
 include "Usuario.class.php";
-include "Publicacion.class.php";
 class DAO
 {
     private $rutaUsuarios = "./CSV/usuarios.csv";
@@ -17,7 +16,7 @@ class DAO
         $arrayDatos = array();
         if ($fp = fopen($this->rutaUsuarios, "r")) {
             while ($filaDatos = fgetcsv($fp, 0, ",")) {
-                $usuario = new Usuario($filaDatos[0], $filaDatos[1], $filaDatos[2], $filaDatos[3], $filaDatos[4], $filaDatos[5]);
+                $usuario = new Usuario($filaDatos[0], $filaDatos[1], $filaDatos[2], $filaDatos[3], $filaDatos[4]);
                 $arrayDatos[] = $usuario;
             }
         } else {
