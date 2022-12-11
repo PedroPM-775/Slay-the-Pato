@@ -1,1 +1,8 @@
-Nombre,Tipo,Valor,Coste
+Nombre,Tipo,Valor
+agujataque,ataque,2
+supercura,cura,10
+cura,cura,1
+defensa,defensa,4
+superdefensa,defensa,6
+supergolpe,ataque,3
+matareyes,ataque,9

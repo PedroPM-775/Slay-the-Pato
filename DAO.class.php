@@ -1,5 +1,6 @@
 <?php
 include "Usuario.class.php";
+include "Carta.class.php";
 class DAO
 {
     private $rutaUsuarios = "./CSV/usuarios.csv";
@@ -53,13 +54,15 @@ class DAO
         return true;
     }
 
+    //@ Devuelve un array de objetos carta
     function leerMazo($parametro)
     {
         if ($parametro == 1) {
             $arrayDatos = array();
             if ($fp = fopen($this->rutaMazo1, "r")) {
-                while ($filaDatos = fgetcsv($fp, 0, ",")) {
-                    $arrayDatos[] = $filaDatos;
+                while ($filadatos = fgetcsv($fp, 0, ",")) {
+                    $carta = new Carta($filadatos[0], $filadatos[1], $filadatos[2]);
+                    $arrayDatos[] = $carta;
                 }
             } else {
                 echo "Error, no se puede acceder al archivo " . $this->rutaMazo1 . "<br>";
@@ -71,8 +74,9 @@ class DAO
         if ($parametro == 2) {
             $arrayDatos = array();
             if ($fp = fopen($this->rutaMazo2, "r")) {
-                while ($filaDatos = fgetcsv($fp, 0, ",")) {
-                    $arrayDatos[] = $filaDatos;
+                while ($filadatos = fgetcsv($fp, 0, ",")) {
+                    $carta = new Carta($filadatos[0], $filadatos[1], $filadatos[2]);
+                    $arrayDatos[] = $carta;
                 }
             } else {
                 echo "Error, no se puede acceder al archivo " . $this->rutaMazo2 . "<br>";
@@ -84,8 +88,9 @@ class DAO
         if ($parametro == 3) {
             $arrayDatos = array();
             if ($fp = fopen($this->rutaMazo3, "r")) {
-                while ($filaDatos = fgetcsv($fp, 0, ",")) {
-                    $arrayDatos[] = $filaDatos;
+                while ($filadatos = fgetcsv($fp, 0, ",")) {
+                    $carta = new Carta($filadatos[0], $filadatos[1], $filadatos[2]);
+                    $arrayDatos[] = $carta;
                 }
             } else {
                 echo "Error, no se puede acceder al archivo " . $this->rutaMazo3 . "<br>";

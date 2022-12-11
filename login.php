@@ -109,7 +109,7 @@ session_destroy();
                 <input type="password" name="contrasinal" id="contrasinal">
                 <br> <br>
                 <button id="enviar" name="enviar" type="submit">LogIn</button>
-                <p> Admin: PedroAdmin abcd12345</p>
+                <p> Admin: admin admin1234</p>
                 <p> Normal: pedropm becerrito</p>
             </form>
         </div>

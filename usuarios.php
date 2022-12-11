@@ -1,6 +1,14 @@
 <?php
 // Recupérase a información da sesión
 session_start();
+
+if (!isset($_SESSION['usuario'])) {
+    header("Location: login.php");
+}
+if ($_SESSION['rol'] != 'Administrador') {
+    die("Error, usuario sin permisos requeridos, por favor haga login <a href='login.php'>aqui</a>.<br />");
+}
+
 // Comprobase que o usuario se autenticou
 ?>
 <!DOCTYPE html>
@@ -11,7 +19,13 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuarios</title>
-    <link rel="stylesheet" href="./CSS/hojaClara.css">
+    <link rel="stylesheet" href="./CSS/hoja<?php
+
+                                            if (isset($_COOKIE['tema'])) {
+                                                echo $_COOKIE['tema'];
+                                            } else {
+                                                echo "Clara";
+                                            } ?>.css">
     <style>
         body {
             font-size: <?php if (isset($_COOKIE['tamano'])) {

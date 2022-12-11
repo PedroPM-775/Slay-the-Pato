@@ -1,4 +1,4 @@
 nombre,correo,contrasena,username,rol
-pedroadmin,nopedro@gmail.com,DmKm/CTd2DjHE,PedroAdmin,Administrador
-pedro,pedro@gmail.com,DmOvqkY.tIWFw,pedropm,Usuario
-admin,Dmif286QPepew,ejemploadmin@ejemploadmin.com,admin,Usuario
+pedroadmin,DmKm/CTd2DjHE,nopedro@gmail.com,PedroAdmin,Administrador
+pedro,DmOvqkY.tIWFw,pedro@gmail.com,pedropm,Usuario
+admin,Dmif286QPepew,ejemploadmin@ejemploadmin.com,admin,Administrador

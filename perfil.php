@@ -1,5 +1,5 @@
 <?php
-include "DAO.php";
+include "DAO.class.php";
 session_start();
 //@ Comprobase que o usuario se autenticou
 if (!isset($_SESSION['usuario'])) {
@@ -131,18 +131,7 @@ $errores = array();
 
     ?>
 
-    <h3>Datos de acceso de usuario:</h3>
-    <fieldset id="visitas">
-        <?php
-        foreach (explode("$$", $_COOKIE["visitas"]) as $visitas) { // Crea un array para enseñar el registro de visitas 
-            echo "<ul><li>" . $visitas . "</li></ul>";
-        }
-        $ultimo = count(explode("$$", $_COOKIE["visitas"])); //Accede al ultimo elemento del array
-        $penultimo = (count(explode("$$", $_COOKIE["visitas"])) - 1); //Accede al penultima elemento del array 
-        if ((mktime($ultimo) - mktime($penultimo)) > 36000000) { // Si la diferencia de tiempo entre los dos accesos es de mas de 10 horas lo muestra
-            echo "Hubo mucho tiempo entre log-ins, ¿todo bien?.";
-        }
-        ?>
+
 
 
 
