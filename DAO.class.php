@@ -57,7 +57,7 @@ class DAO
     //@ Devuelve un array de objetos carta
     function leerMazo($parametro)
     {
-        if ($parametro == 1) {
+        if ($parametro == 'PatoEspada') {
             $arrayDatos = array();
             if ($fp = fopen($this->rutaMazo1, "r")) {
                 while ($filadatos = fgetcsv($fp, 0, ",")) {
@@ -71,7 +71,7 @@ class DAO
             fclose($fp);
             return $arrayDatos;
         }
-        if ($parametro == 2) {
+        if ($parametro == 'PatoEscudo') {
             $arrayDatos = array();
             if ($fp = fopen($this->rutaMazo2, "r")) {
                 while ($filadatos = fgetcsv($fp, 0, ",")) {
@@ -85,7 +85,7 @@ class DAO
             fclose($fp);
             return $arrayDatos;
         }
-        if ($parametro == 3) {
+        if ($parametro == 'PatoRifle') {
             $arrayDatos = array();
             if ($fp = fopen($this->rutaMazo3, "r")) {
                 while ($filadatos = fgetcsv($fp, 0, ",")) {

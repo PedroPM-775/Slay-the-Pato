@@ -56,17 +56,69 @@ class Personaje
 
 
     //@ Metodos de verdad
-    public function __construct($nombre, $vida, $ataque, $defensa, $vidagris)
+    public function __construct($nombre)
     {
-        $this->setNombre($nombre);
-        $this->setVida($vida);
-        $this->setAtaque($ataque);
-        $this->setDefensa($defensa);
-        $this->setVidaGris($vidagris);
+        switch ($nombre) {
+            case 'PatoEspada':
+                $this->setNombre('PatoEspada');
+                $this->setVida(20);
+                $this->setAtaque(2);
+                $this->setDefensa(2);
+                $this->setVidaGris(0);
+                break;
+            case 'PatoEscudo':
+                $this->setNombre('PatoEscudo');
+                $this->setVida(31);
+                $this->setAtaque(0);
+                $this->setDefensa(4);
+                $this->setVidaGris(0);
+                break;
+            case 'PatoRifle':
+                $this->setNombre('PatoRifle');
+                $this->setVida(18);
+                $this->setAtaque(5);
+                $this->setDefensa(0);
+                $this->setVidaGris(0);
+                break;
+            case 'vader':
+                $this->setNombre('vader');
+                $this->setVida(80);
+                $this->setAtaque(3);
+                $this->setDefensa(3);
+                $this->setVidaGris(0);
+                break;
+            case 'akuma':
+                $this->setNombre('akuma');
+                $this->setVida(40);
+                $this->setAtaque(9);
+                $this->setDefensa(1);
+                $this->setVidaGris(0);
+                break;
+            case 'firulais':
+                $this->setNombre('firulais');
+                $this->setVida(20);
+                $this->setAtaque(1);
+                $this->setDefensa(1);
+                $this->setVidaGris(0);
+                break;
+            case 'jamal':
+                $this->setNombre('jamal');
+                $this->setVida(200);
+                $this->setAtaque(10);
+                $this->setDefensa(10);
+                $this->setVidaGris(0);
+                break;
+        }
     }
+
+
+
     public function hacerdanho($daño)
     {
-        $vidosia = $this->getVida() + $this->getVidaGris() - $daño;
-        echo $vidosia;
+        $this->setVida($this->getVida() + $this->getVidaGris() - $daño);
+    }
+    public function curar($davidaño)
+    {
+        $this->setVida($this->getVida() + $davidaño);
     }
 }

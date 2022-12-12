@@ -42,28 +42,32 @@ session_start();
     if (isset($_POST['comenzar'])) {
         $_SESSION['personaje'] = $_POST['personaje'];
         $_SESSION['enemigo'] = $_POST['enemigo'];
+        $_SESSION['ronda'] = 0;
         header("Location: partida.php");
     } else {
 
     ?>
-        <form action="index.php" method="post">
-            <select name="personaje" id="personaje">
-                <option value="pato1" selected>Palanceado</option>
-                <option value="pato2">Patescudo</option>
-                <option value="pato3">Francotipato</option>
+        <div id="contenedorindex">
+            <form action="index.php" method="post">
 
-            </select>
-            <select name="enemigo" id="enemigo">
-                <option value="vader" selected>Vader</option>
-                <option value="akuma">Akuma</option>
-                <option value="firulais">Firulais</option>
-                <option value="Jamal">Jamal</option>
+                <select name="personaje" id="personaje">
+                    <option value="PatoEspada" selected>Palanceado</option>
+                    <option value="PatoEscudo">Patescudo</option>
+                    <option value="PatoRifle">Francotipato</option>
 
-            </select>
-            <br>
-            <!-- //$ Posible sugerencia, añadir imagenes de las criaturas y que con js cambien las imagenes -->
-            <input type="submit" value="comenzar" name="comenzar">
-        </form>
+                </select>
+                <select name="enemigo" id="enemigo">
+                    <option value="vader" selected>Vader</option>
+                    <option value="akuma">Akuma</option>
+                    <option value="firulais">Firulais</option>
+                    <option value="Jamal">Jamal</option>
+
+                </select>
+                <br>
+                <!-- //$ Posible sugerencia, añadir imagenes de las criaturas y que con js cambien las imagenes -->
+                <input type="submit" value="comenzar" name="comenzar">
+            </form>
+        </div>
     <?php
     } ?>
 </body>

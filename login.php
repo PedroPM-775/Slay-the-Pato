@@ -111,6 +111,7 @@ session_destroy();
                 <button id="enviar" name="enviar" type="submit">LogIn</button>
                 <p> Admin: admin admin1234</p>
                 <p> Normal: pedropm becerrito</p>
+                <a href="registrar.php">¿No tienes cuenta? Registrate</a>
             </form>
         </div>
     </div>

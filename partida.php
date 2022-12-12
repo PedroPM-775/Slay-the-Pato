@@ -1,10 +1,9 @@
 <?php
 session_start();
-if ((!isset($_SESSION['usuario'])) || (!isset($_SESSION['enemigo'])) || (!isset($_SESSION['personaje']))) {
-    header("Position: login.php");
+if ((!isset($_SESSION['usuario'])) || (!isset($_SESSION['enemigo'])) || (!isset($_SESSION['personaje'])) || (!isset($_SESSION['ronda']))) {
+    header("Location: index.php");
 }
 include "Personaje.class.php";
-include "Enemigo.class.php";
 include "DAO.class.php";
 ?>
 <!DOCTYPE html>
@@ -57,143 +56,173 @@ include "DAO.class.php";
         return $manoJugador;
     }
 
+    function efectocarta($personaje, $carta)
+    {
+        switch ($carta->getTipo()) {
+            case 'defensa':
+                $personaje->setVidaGris($carta->getValor() + $personaje->getDefensa());
+                //return $personaje;
+                break;
+            case 'cura':
+                $personaje->curar($carta->getValor());
+                //return $personaje();
+                break;
+        }
+    }
 
 
 
-    if (isset($_SESSION['heroe'])) {
+    if ($_SESSION['ronda'] == 0) {
+
+
+        $heroe = new Personaje($_SESSION['personaje']);
+        $villano = new Personaje($_SESSION['enemigo']);
+    }
+
+    if ($_SESSION['ronda'] != 0) {
         $heroe = unserialize($_SESSION['heroe']);
-    } else {
-        $heroe = new Personaje($_SESSION['personaje'], 10, 2, 0, 0);
-    }
-    if (isset($_SESSION['villano'])) {
         $villano = unserialize($_SESSION['villano']);
-    } else {
-        $villano = new Personaje($_SESSION['enemigo'], 5, 2, 2, 2);
     }
+
+    $baraja = $DAO->leerMazo($heroe->getNombre());
     $manoJugador = repartirmano($baraja);
 
-    if (isset($_POST['']))
+    if (isset($_POST['ronda'])) {
+
+        if (isset($_POST['cartac1'])) {
+            switch ($manoJugador[0]->getValor()) {
+                default:
+                    efectocarta($heroe, $manoJugador[0]);
+                    break;
+                case 'ataque':
+                    $dano = $manoJugador[0]->getValor + $heroe->getAtaque();
+                    $villano->hacerdanho($dano);
+                    break;
+            }
+        }
+        if (isset($_POST['cartac2'])) {
+            switch ($manoJugador[1]->getValor()) {
+                default:
+                    efectocarta($heroe, $manoJugador[1]);
+                    break;
+                case 'ataque':
+                    $dano = $manoJugador[1]->getValor + $heroe->getAtaque();
+                    $villano->hacerdanho($dano);
+                    break;
+            }
+        }
+        if (isset($_POST['cartac3'])) {
+            switch ($manoJugador[2]->getValor()) {
+                default:
+                    efectocarta($heroe, $manoJugador[2]);
+                    break;
+                case 'ataque':
+                    $dano = $manoJugador[2]->getValor + $heroe->getAtaque();
+                    $villano->hacerdanho($dano);
+                    break;
+            }
+        }
+        if (isset($_POST['cartac4'])) {
+            switch ($manoJugador[3]->getValor()) {
+                default:
+                    efectocarta($heroe, $manoJugador[3]);
+                    break;
+                case 'ataque':
+                    $dano = $manoJugador[3]->getValor + $heroe->getAtaque();
+                    $villano->hacerdanho($dano);
+                    break;
+            }
+        }
+        if (isset($_POST['cartac5'])) {
+            switch ($manoJugador[4]->getValor()) {
+                default:
+                    efectocarta($heroe, $manoJugador[4]);
+                    break;
+                case 'ataque':
+                    $heroe =  $dano = $manoJugador[4]->getValor + $heroe->getAtaque();
+                    $villano->hacerdanho($dano);
+                    break;
+            }
+        }
+        if ($villano->getVida() > 0) {
+            //movidas de haber ganado
+        }
+        //hacer turno de villano
+        if ($heroe->getVida() <= 0) {
+            //movidas de haber perdido
+        }
+
+        $heroeserial = serialize($heroe);
+        $villanoserial = serialize($villano);
+
+        $_SESSION['heroe'] = $heroeserial;
+        $_SESSION['villano'] = $villanoserial;
+    }
+
+
 
 
 
 
     ?>
-
-
     <div id="superiordiv">
-        <h1><?php echo $_SESSION['personaje'] ?></h1>
-        <h1><?php echo $_SESSION['enemigo'] ?></h1>
+        <img id="fotoheroe" src="MULTIMEDIA/<?php echo $heroe->getNombre();  ?>.png">
+        <img id="fotomalo" src="MULTIMEDIA/<?php echo $villano->getNombre();  ?>.png">
+        <div id="accionesenemigo"></div>
     </div>
     <div id="interfaz">
         <form action="partida.php" method="post">
             <div id="manojugador">
 
-
                 <div class="container">
-
-
                     <div class="card">
                         <img class="imgcarta" src="MULTIMEDIA/<?php echo $manoJugador[0]->getTipo() ?>.png">
-
-                        <!-- A div with card__details class to hold the details in the card  -->
                         <div class="card__details">
-
-                            <!-- Span with tag class for the tag -->
                             <span class="tag"><?php echo $manoJugador[0]->getValor(); ?></span>
-
                             <span class="tag"><?php echo $manoJugador[0]->getTipo(); ?></span>
-
-                            <!-- A div with name class for the name of the card -->
                             <div class="name"><?php echo $manoJugador[0]->getNombre(); ?></div>
-
-
-
-                            <input type="checkbox" name="cartac1" id="cartac1">
+                            <input type="checkbox" name="cartac1" value="cartac1" id="cartac1">jugar
                         </div>
-
 
                     </div>
                     <div class="card">
                         <img class="imgcarta" src="MULTIMEDIA/<?php echo $manoJugador[1]->getTipo() ?>.png">
-
-                        <!-- A div with card__details class to hold the details in the card  -->
                         <div class="card__details">
-
-                            <!-- Span with tag class for the tag -->
                             <span class="tag"><?php echo $manoJugador[1]->getValor(); ?></span>
-
                             <span class="tag"><?php echo $manoJugador[1]->getTipo(); ?></span>
-
-                            <!-- A div with name class for the name of the card -->
                             <div class="name"><?php echo $manoJugador[1]->getNombre(); ?></div>
-
-
-
-                            <input type="checkbox" name="cartac1" id="cartac1">jugar
+                            <input type="checkbox" name="cartac2" value="cartac2" id="cartac2">jugar
                         </div>
-
 
                     </div>
                     <div class="card">
                         <img class="imgcarta" src="MULTIMEDIA/<?php echo $manoJugador[2]->getTipo() ?>.png">
-
-                        <!-- A div with card__details class to hold the details in the card  -->
                         <div class="card__details">
-
-                            <!-- Span with tag class for the tag -->
                             <span class="tag"><?php echo $manoJugador[2]->getValor(); ?></span>
                             <span class="tag"><?php echo $manoJugador[2]->getTipo(); ?></span>
-
-                            <!-- A div with name class for the name of the card -->
                             <div class="name"><?php echo $manoJugador[2]->getNombre(); ?></div>
-
-
-
-                            <input type="checkbox" name="cartac1" id="cartac1">
+                            <input type="checkbox" name="cartac3" value="cartac3" id="cartac3">jugar
                         </div>
-
 
                     </div>
                     <div class="card">
                         <img class="imgcarta" src="MULTIMEDIA/<?php echo $manoJugador[3]->getTipo() ?>.png">
-
-                        <!-- A div with card__details class to hold the details in the card  -->
                         <div class="card__details">
-
-                            <!-- Span with tag class for the tag -->
                             <span class="tag"><?php echo $manoJugador[3]->getValor(); ?></span>
-
                             <span class="tag"><?php echo $manoJugador[3]->getTipo(); ?></span>
-
-                            <!-- A div with name class for the name of the card -->
                             <div class="name"><?php echo $manoJugador[3]->getNombre(); ?></div>
-
-
-
-                            <input type="checkbox" name="cartac1" id="cartac1">
+                            <input type="checkbox" name="cartac4" value="cartac4" id="cartac4">jugar
                         </div>
-
 
                     </div>
                     <div class="card">
                         <img class="imgcarta" src="MULTIMEDIA/<?php echo $manoJugador[4]->getTipo() ?>.png">
-
-                        <!-- A div with card__details class to hold the details in the card  -->
                         <div class="card__details">
-
-                            <!-- Span with tag class for the tag -->
                             <span class="tag"><?php echo $manoJugador[4]->getValor(); ?></span>
-
                             <span class="tag"><?php echo $manoJugador[4]->getTipo(); ?></span>
-
-                            <!-- A div with name class for the name of the card -->
                             <div class="name"><?php echo $manoJugador[4]->getNombre(); ?></div>
-
-
-
-                            <input type="checkbox" name="cartac1" id="cartac1">
+                            <input type="checkbox" name="cartac5" value="cartac5" id="cartac5">jugar
                         </div>
-
 
                     </div>
                 </div>
