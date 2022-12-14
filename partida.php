@@ -143,7 +143,8 @@ include "DAO.class.php";
         }
 
         if ($villano->getVida() <= 0) {
-            die("ganaste manin");
+            $_SESSION['resultado'] = "victoria";
+            header("Location: resultados.php");
         }
 
         $villano->setVidaGris(0);
@@ -153,7 +154,8 @@ include "DAO.class.php";
             $heroe->hacerdanho($accion);
         }
         if ($heroe->getVida() <= 0) {
-            die("perdiste manin");
+            $_SESSION['resultado'] = "derrota";
+            header("Location: resultados.php");
         }
         $_SESSION['heroe'] = serialize($heroe);
         $_SESSION['mano'] = serialize($manoJugador);
