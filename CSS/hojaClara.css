@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(107, 184, 184);
+  background-color: rgb(111, 190, 128);
 }
 
 table,
@@ -152,8 +152,10 @@ button {
 }
 #accionesenemigo {
   position: absolute;
-  top: 0px;
-  width: 200px;
-  height: 200px;
-  background-color: #0077ff;
+  bottom: 2px;
+  left: 50%;
+  width: 250px;
+  height: 80px;
+  border-radius: 10px;
+  background-color: rgb(111, 190, 128);
 }

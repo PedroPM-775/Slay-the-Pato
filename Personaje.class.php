@@ -61,35 +61,35 @@ class Personaje
         switch ($nombre) {
             case 'PatoEspada':
                 $this->setNombre('PatoEspada');
-                $this->setVida(20);
+                $this->setVida(60);
                 $this->setAtaque(2);
                 $this->setDefensa(2);
                 $this->setVidaGris(0);
                 break;
             case 'PatoEscudo':
                 $this->setNombre('PatoEscudo');
-                $this->setVida(31);
+                $this->setVida(90);
                 $this->setAtaque(0);
                 $this->setDefensa(4);
                 $this->setVidaGris(0);
                 break;
             case 'PatoRifle':
                 $this->setNombre('PatoRifle');
-                $this->setVida(18);
+                $this->setVida(40);
                 $this->setAtaque(5);
                 $this->setDefensa(0);
                 $this->setVidaGris(0);
                 break;
             case 'vader':
                 $this->setNombre('vader');
-                $this->setVida(80);
+                $this->setVida(100);
                 $this->setAtaque(3);
                 $this->setDefensa(3);
                 $this->setVidaGris(0);
                 break;
             case 'akuma':
                 $this->setNombre('akuma');
-                $this->setVida(40);
+                $this->setVida(30);
                 $this->setAtaque(9);
                 $this->setDefensa(1);
                 $this->setVidaGris(0);
@@ -128,10 +128,11 @@ class Personaje
     {
         $this->setVida($this->getVida() + $davidaño);
     }
-    public function accionvillano()
+
+    public function accionvillano($accion)
     {
-        $accion = rand(1, 3);
-        switch ($accion) {
+        $intaccion = intval($accion);
+        switch ($intaccion) {
             case 1:
                 $vidagris = 15 + intval($this->getDefensa());
                 $this->setVidaGris($vidagris);

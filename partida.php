@@ -74,12 +74,14 @@ include "DAO.class.php";
         $baraja = $DAO->leerMazo($heroe->getNombre());
         $manoJugador = repartirmano($baraja);
         $manoTurnoAnterior = $manoJugador;
+        $actuacion = 1;
     } else {
         $heroe = unserialize($_SESSION['heroe']);
         $villano = unserialize($_SESSION['villano']);
         $baraja = $DAO->leerMazo($heroe->getNombre());
         $manoJugador = repartirmano($baraja);
         $manoTurnoAnterior = unserialize($_SESSION['mano']);
+        $actuacion = $_SESSION['actuacion'];
     }
 
     if (isset($_POST['ronda'])) {
@@ -140,21 +142,24 @@ include "DAO.class.php";
             }
         }
 
-        if ($villano->getVida() < 0) {
+        if ($villano->getVida() <= 0) {
             die("ganaste manin");
         }
+
         $villano->setVidaGris(0);
-        $accion = $villano->accionvillano();
+        $accion = $villano->accionvillano($actuacion);
+
         if ($accion != false) {
             $heroe->hacerdanho($accion);
         }
-        if ($heroe->getVida() < 0) {
+        if ($heroe->getVida() <= 0) {
             die("perdiste manin");
         }
         $_SESSION['heroe'] = serialize($heroe);
         $_SESSION['mano'] = serialize($manoJugador);
         $_SESSION['villano'] = serialize($villano);
         $_SESSION['ronda'] = 1;
+        $_SESSION['actuacion'] = rand(1, 3);
     }
 
     ?>
@@ -165,6 +170,19 @@ include "DAO.class.php";
             <?php
             if ($_SESSION['ronda'] == 0) {
                 echo "<p> El enemigo se prepara...</p>";
+            } else {
+                $aj = intval($actuacion);
+                switch ($aj) {
+                    case '1':
+                        echo "<p>¡El enemigo va a defenderse!</p>";
+                        break;
+                    case '2':
+                        echo "<p>¡El enemigo va a atacar!</p>";
+                        break;
+                    case '3':
+                        echo "<p>¡El enemigo va a defenderse y atacar a la vez!</p>";
+                        break;
+                }
             }
             ?>
         </div>
@@ -230,12 +248,12 @@ include "DAO.class.php";
             </div>
             <div id="descripcioncarta">
                 <p> Vida : <?php echo $heroe->getVida(); ?> puntos</p>
-                <p> Vida Gris : <?php echo $heroe->getVidaGris(); ?> puntos</p>
+                <p> Escudo : <?php echo $heroe->getVidaGris(); ?> puntos</p>
                 <p> Ataque : <?php echo $heroe->getAtaque(); ?> puntos</p>
                 <p> Defensa : <?php echo $heroe->getDefensa(); ?> puntos</p>
 
                 <p> Vida Enemigo: <?php echo $villano->getVida(); ?> puntos</p>
-                <p> Vida Gris Enemigo: <?php echo $villano->getVidaGris(); ?> puntos</p>
+                <p> Escudo Enemigo: <?php echo $villano->getVidaGris(); ?> puntos</p>
                 <input type="submit" value="ronda" id="ronda" name="ronda">
             </div>
         </form>
