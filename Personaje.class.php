@@ -115,10 +115,38 @@ class Personaje
 
     public function hacerdanho($daño)
     {
-        $this->setVida($this->getVida() + $this->getVidaGris() - $daño);
+        $danorecibido = intval($this->getVidaGris()) - intval($daño);
+        if (0 < $danorecibido) {
+        } else {
+            $vidanueva = intval($this->getVida()) + $danorecibido;
+            $this->setVida($vidanueva);
+        }
     }
+
+
     public function curar($davidaño)
     {
         $this->setVida($this->getVida() + $davidaño);
+    }
+    public function accionvillano()
+    {
+        $accion = rand(1, 3);
+        switch ($accion) {
+            case 1:
+                $vidagris = 15 + intval($this->getDefensa());
+                $this->setVidaGris($vidagris);
+                return false;
+                break;
+            case 2:
+                $ataque = 20 + intval($this->getAtaque());
+                return $ataque;
+                break;
+            case 3:
+                $ataque = 10 + intval($this->getAtaque());
+                $vidagris = 5 + intval($this->getDefensa());
+                $this->setVidaGris($vidagris);
+                return $ataque;
+                break;
+        }
     }
 }

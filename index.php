@@ -1,5 +1,8 @@
 <?php
+include "DAO.class.php";
 session_start();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -40,10 +43,19 @@ session_start();
     include "menu.php";
 
     if (isset($_POST['comenzar'])) {
-        $_SESSION['personaje'] = $_POST['personaje'];
-        $_SESSION['enemigo'] = $_POST['enemigo'];
-        $_SESSION['ronda'] = 0;
-        header("Location: partida.php");
+        if (isset($_SESSION['usuario'])) {
+            unset($_SESSION['personaje']);
+            unset($_SESSION['enemigo']);
+            unset($_SESSION['ronda']);
+            $_SESSION['personaje'] = $_POST['personaje'];
+            $_SESSION['enemigo'] = $_POST['enemigo'];
+            $_SESSION['ronda'] = 0;
+
+
+            header("Location: partida.php");
+        } else {
+            header("Location: login.php");
+        }
     } else {
 
     ?>

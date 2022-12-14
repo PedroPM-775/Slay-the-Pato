@@ -150,3 +150,10 @@ button {
   position: absolute;
   right: 50px;
 }
+#accionesenemigo {
+  position: absolute;
+  top: 0px;
+  width: 200px;
+  height: 200px;
+  background-color: #0077ff;
+}

@@ -57,19 +57,22 @@ if (isset($_SESSION['usuario'])) {
         if (!isset($_POST['nome'])) {
             array_push($errores, "nome");
         }
-
+        echo "a";
+        echo "<br>";
         if (isset($_POST['nome'])) {
             $nombre = $_POST['nome'];
-            $nombretrim = ltrim($nombre);
+            $nombretrim = trim($nombre);
             if (!preg_match("/^[a-zA-Z]+$/", $nombretrim)) {
                 array_push($errores, "El nombre contiene caracteres no permitidos");
             }
         }
-
+        echo "b";
+        echo "<br>";
         if (!isset($_POST['contrasinal'])) {
             array_push($errores, "contrasinal");
         }
-
+        echo "c";
+        echo "<br>";
         if (isset($_POST['contrasinal'])) {
             $contrasena = $_POST['contrasinal'];
             if (strlen($contrasena) > 8) {
@@ -80,22 +83,26 @@ if (isset($_SESSION['usuario'])) {
                 array_push($errores, "La contraseña es del tamaño incorrecto, debe de ser de al menos 8 cifras");
             }
         }
-
+        echo "d";
+        echo "<br>";
         if (!isset($_POST['email'])) {
             array_push($errores, "email");
         }
-
+        echo "e";
+        echo "<br>";
         if (isset($_POST['email'])) {
             $email = $_POST['email'];
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 array_push($errores, "El formato de email no es correcto");
             }
         }
-
+        echo "f";
+        echo "<br>";
         if (!isset($_POST['username'])) {
             array_push($errores, "username");
         }
-
+        echo "g";
+        echo "<br>";
         if (isset($_POST['username'])) {
             $username = $_POST['username'];
             $nombretrim = ltrim($username);
@@ -103,42 +110,50 @@ if (isset($_SESSION['usuario'])) {
                 array_push($errores, "El nombre de usuario contiene caracteres no permitidos");
             }
         }
-
+        echo "h";
+        echo "<br>";
         for ($i = 0; $i < count($listanombres); $i++) {
             if ($_POST['username'] == $listanombres[$i]) {
                 array_push($errores, "El nombre de usuario ya existe, elija otro");
             }
         }
-
+        echo "i";
+        echo "<br>";
+        var_dump($errores);
         if (isset($_POST['enviar']) && count($errores) == 0) {
-
+            echo "j";
+            echo "<br>";
             $introducir = [];
             $string = $_POST['nome'];
             $stringtrim = ltrim($string);
             array_push($introducir, $stringtrim);
-
+            echo "k";
+            echo "<br>";
             $string = $_POST['contrasinal'];
             $stringtrim = ltrim($string);
-            $ps = crypt($stringtrim, "DmGx5dZx");
+            $ps = crypt($stringtrim, '$5$rounds=5000$usesomesillystringforsalt');
             array_push($introducir, $ps);
-
+            echo "l";
+            echo "<br>";
             $string = $_POST['email'];
             $stringtrim = ltrim($string);
             array_push($introducir, $stringtrim);
-
+            echo "m";
+            echo "<br>";
             $string = $_POST['username'];
             $stringtrim = ltrim($string);
             array_push($introducir, $stringtrim);
-
             array_push($introducir, "Usuario");
-
+            echo "n";
+            echo "<br>";
             $objeto = new Usuario($introducir[0], $introducir[1], $introducir[2], $introducir[3], $introducir[4]);
             array_push($datos, $objeto);
 
             $DAO->escribirArrayUsuarios($datos);
             session_start();
-            $_SESSION['usuario'] = $objeto->getuserName();
-            $_SESSION['rol'] = $objeto->getRol();
+            $_SESSION['usuario'] = serialize($objeto);
+            echo "j";
+            echo "<br>";
             header("Location: index.php");
         }
     }

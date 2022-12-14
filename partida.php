@@ -44,8 +44,6 @@ include "DAO.class.php";
     <?php
     $DAO = new DAO();
 
-    $baraja = $DAO->leerMazo(1);
-
     function repartirmano($baraja)
     {
         $manoJugador = array();
@@ -61,11 +59,9 @@ include "DAO.class.php";
         switch ($carta->getTipo()) {
             case 'defensa':
                 $personaje->setVidaGris($carta->getValor() + $personaje->getDefensa());
-                //return $personaje;
                 break;
             case 'cura':
                 $personaje->curar($carta->getValor());
-                //return $personaje();
                 break;
         }
     }
@@ -73,102 +69,105 @@ include "DAO.class.php";
 
 
     if ($_SESSION['ronda'] == 0) {
-
-
         $heroe = new Personaje($_SESSION['personaje']);
         $villano = new Personaje($_SESSION['enemigo']);
-    }
-
-    if ($_SESSION['ronda'] != 0) {
+        $baraja = $DAO->leerMazo($heroe->getNombre());
+        $manoJugador = repartirmano($baraja);
+        $manoTurnoAnterior = $manoJugador;
+    } else {
         $heroe = unserialize($_SESSION['heroe']);
         $villano = unserialize($_SESSION['villano']);
+        $baraja = $DAO->leerMazo($heroe->getNombre());
+        $manoJugador = repartirmano($baraja);
+        $manoTurnoAnterior = unserialize($_SESSION['mano']);
     }
-
-    $baraja = $DAO->leerMazo($heroe->getNombre());
-    $manoJugador = repartirmano($baraja);
 
     if (isset($_POST['ronda'])) {
 
         if (isset($_POST['cartac1'])) {
-            switch ($manoJugador[0]->getValor()) {
+            switch ($manoTurnoAnterior[0]->getTipo()) {
                 default:
-                    efectocarta($heroe, $manoJugador[0]);
+                    efectocarta($heroe, $manoTurnoAnterior[0]);
                     break;
                 case 'ataque':
-                    $dano = $manoJugador[0]->getValor + $heroe->getAtaque();
-                    $villano->hacerdanho($dano);
+                    $dano = intval($manoTurnoAnterior[0]->getValor()) + intval($heroe->getAtaque());
+                    $villano->hacerdanho(intval($dano));
                     break;
             }
         }
         if (isset($_POST['cartac2'])) {
-            switch ($manoJugador[1]->getValor()) {
+            switch ($manoTurnoAnterior[1]->getTipo()) {
                 default:
-                    efectocarta($heroe, $manoJugador[1]);
+                    efectocarta($heroe, $manoTurnoAnterior[1]);
                     break;
                 case 'ataque':
-                    $dano = $manoJugador[1]->getValor + $heroe->getAtaque();
-                    $villano->hacerdanho($dano);
+                    $dano = intval($manoTurnoAnterior[1]->getValor()) + intval($heroe->getAtaque());
+                    $villano->hacerdanho(intval($dano));
                     break;
             }
         }
         if (isset($_POST['cartac3'])) {
-            switch ($manoJugador[2]->getValor()) {
+            switch ($manoTurnoAnterior[2]->getTipo()) {
                 default:
-                    efectocarta($heroe, $manoJugador[2]);
+                    efectocarta($heroe, $manoTurnoAnterior[2]);
                     break;
                 case 'ataque':
-                    $dano = $manoJugador[2]->getValor + $heroe->getAtaque();
-                    $villano->hacerdanho($dano);
+                    $dano = intval($manoTurnoAnterior[2]->getValor()) + intval($heroe->getAtaque());
+                    $villano->hacerdanho(intval($dano));
                     break;
             }
         }
         if (isset($_POST['cartac4'])) {
-            switch ($manoJugador[3]->getValor()) {
+            switch ($manoTurnoAnterior[3]->getTipo()) {
                 default:
-                    efectocarta($heroe, $manoJugador[3]);
+                    efectocarta($heroe, $manoTurnoAnterior[3]);
                     break;
                 case 'ataque':
-                    $dano = $manoJugador[3]->getValor + $heroe->getAtaque();
-                    $villano->hacerdanho($dano);
+                    $dano = intval($manoTurnoAnterior[3]->getValor()) + intval($heroe->getAtaque());
+                    $villano->hacerdanho(intval($dano));
                     break;
             }
         }
         if (isset($_POST['cartac5'])) {
-            switch ($manoJugador[4]->getValor()) {
+            switch ($manoTurnoAnterior[4]->getTipo()) {
                 default:
-                    efectocarta($heroe, $manoJugador[4]);
+                    efectocarta($heroe, $manoTurnoAnterior[4]);
                     break;
                 case 'ataque':
-                    $heroe =  $dano = $manoJugador[4]->getValor + $heroe->getAtaque();
-                    $villano->hacerdanho($dano);
+                    $dano = intval($manoTurnoAnterior[4]->getValor()) + intval($heroe->getAtaque());
+                    $villano->hacerdanho(intval($dano));
                     break;
             }
         }
-        if ($villano->getVida() > 0) {
-            //movidas de haber ganado
-        }
-        //hacer turno de villano
-        if ($heroe->getVida() <= 0) {
-            //movidas de haber perdido
-        }
 
-        $heroeserial = serialize($heroe);
-        $villanoserial = serialize($villano);
-
-        $_SESSION['heroe'] = $heroeserial;
-        $_SESSION['villano'] = $villanoserial;
+        if ($villano->getVida() < 0) {
+            die("ganaste manin");
+        }
+        $villano->setVidaGris(0);
+        $accion = $villano->accionvillano();
+        if ($accion != false) {
+            $heroe->hacerdanho($accion);
+        }
+        if ($heroe->getVida() < 0) {
+            die("perdiste manin");
+        }
+        $_SESSION['heroe'] = serialize($heroe);
+        $_SESSION['mano'] = serialize($manoJugador);
+        $_SESSION['villano'] = serialize($villano);
+        $_SESSION['ronda'] = 1;
     }
-
-
-
-
-
 
     ?>
     <div id="superiordiv">
         <img id="fotoheroe" src="MULTIMEDIA/<?php echo $heroe->getNombre();  ?>.png">
         <img id="fotomalo" src="MULTIMEDIA/<?php echo $villano->getNombre();  ?>.png">
-        <div id="accionesenemigo"></div>
+        <div id="accionesenemigo">
+            <?php
+            if ($_SESSION['ronda'] == 0) {
+                echo "<p> El enemigo se prepara...</p>";
+            }
+            ?>
+        </div>
     </div>
     <div id="interfaz">
         <form action="partida.php" method="post">

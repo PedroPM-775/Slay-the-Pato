@@ -1,5 +1,3 @@
 nombre,correo,contrasena,username,rol
-pedroadmin,DmKm/CTd2DjHE,nopedro@gmail.com,PedroAdmin,Administrador
-pedro,DmOvqkY.tIWFw,pedro@gmail.com,pedropm,Usuario
-admin,Dmif286QPepew,ejemploadmin@ejemploadmin.com,admin,Administrador
-pedropmpm,Dme0xny6HdnYU,admin@gmail.com,adminadmin,Usuario
+pedroadmin,$5$rounds=5000$usesomesillystri$/0XgCnB8oIZ8wK1oqV3CPsuq8s/bCYKK6SYkLL0mYD1,nopedro@gmail.com,admin,Administrador
+pedro,$5$rounds=5000$usesomesillystri$7T9MMLYXVSI0quYwPJzkla144.I9K4OReKMBfRjqx59,pedro@gmail.com,pedropm,Usuario

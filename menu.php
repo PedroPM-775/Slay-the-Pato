@@ -12,7 +12,8 @@
         <a href="logoff.php">Salir</a>
         <a href="configuracion.php" <?php
                                     if (isset($_SESSION['usuario'])) {
-                                        if ($_SESSION['rol'] != 'Administrador') {
+                                        $a = unserialize($_SESSION['usuario']);
+                                        if (!$a->Admin()) {
                                             echo "style ='display:none;'";
                                         }
                                     } else {
@@ -21,7 +22,8 @@
                                     ?>>Configuracion</a>
         <a href="usuarios.php" <?php
                                 if (isset($_SESSION['usuario'])) {
-                                    if ($_SESSION['rol'] != 'Administrador') {
+                                    $a = unserialize($_SESSION['usuario']);
+                                    if (!$a->Admin()) {
                                         echo "style ='display:none;'";
                                     }
                                 } else {
@@ -32,7 +34,8 @@
         <a href="index.php">Pagina Principal</a>
         <p><?php
             if (isset($_SESSION['usuario'])) {
-                echo $_SESSION['usuario'];
+                $a = unserialize($_SESSION['usuario']);
+                echo $a->getuserName();
             } else {
                 echo "Usuario no registrado";
             }

@@ -1,12 +1,16 @@
 <?php
 // Recupérase a información da sesión
+include "DAO.class.php";
 session_start();
-
+unset($_SESSION['personaje']);
+unset($_SESSION['enemigo']);
+unset($_SESSION['ronda']);
 if (!isset($_SESSION['usuario'])) {
     header("Location: login.php");
 }
-if ($_SESSION['rol'] != 'Administrador') {
-    die("Error, usuario sin permisos requeridos, por favor haga login <a href='login.php'>aqui</a>.<br />");
+$usuario = unserialize($_SESSION['usuario']);
+if (!$usuario->Admin()) {
+    header("Location: index.php");
 }
 
 // Comprobase que o usuario se autenticou
@@ -45,7 +49,6 @@ if ($_SESSION['rol'] != 'Administrador') {
 <body>
     <?php
     include "menu.php";
-    include "DAO.class.php";
     $DAO = new DAO();
     $datos = $DAO->devolverArrayUsuarios();
     $errores = array();
@@ -122,7 +125,7 @@ if ($_SESSION['rol'] != 'Administrador') {
 
             $string = $_POST['contrasinal'];
             $stringtrim = ltrim($string);
-            $ps = crypt($stringtrim, "DmGx5dZx");
+            $ps = crypt($stringtrim, '$5$rounds=5000$usesomesillystringforsalt');
             array_push($introducir, $ps);
 
             $string = $_POST['email'];

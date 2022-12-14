@@ -29,7 +29,6 @@ session_destroy();
 
     <?php
     $DAO = new DAO();
-
     $datos = $DAO->devolverArrayUsuarios();
     $encontrado = false;
     //@ Compruebo si los datos estan en la base de datos
@@ -58,7 +57,8 @@ session_destroy();
             $numfila;
             $nombre = trim($_POST['nome']);
             $password = trim($_POST['contrasinal']);
-            $ps = crypt($password, "DmGx5dZx");
+            $ps = crypt($password, '$5$rounds=5000$usesomesillystringforsalt');
+            echo "a";
             while (!$loop) {
                 for ($i = 1; $i < count($datos); $i++) {
                     if (hash_equals($nombre, $datos[$i]->getuserName())) {
@@ -77,8 +77,7 @@ session_destroy();
         $usuario = $datos[$numfila];
         //@ codigo de autenticacion y mandar a la pagina de usuarios.php
         session_start();
-        $_SESSION['usuario'] = $usuario->getuserName();
-        $_SESSION['rol'] = $usuario->getRol();
+        $_SESSION['usuario'] = serialize($usuario);
         if ($usuario->Admin()) {
             header("Location: usuarios.php");
         } else {
@@ -109,7 +108,7 @@ session_destroy();
                 <input type="password" name="contrasinal" id="contrasinal">
                 <br> <br>
                 <button id="enviar" name="enviar" type="submit">LogIn</button>
-                <p> Admin: admin admin1234</p>
+                <p> Admin: admin abcd12345</p>
                 <p> Normal: pedropm becerrito</p>
                 <a href="registrar.php">¿No tienes cuenta? Registrate</a>
             </form>

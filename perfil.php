@@ -5,6 +5,9 @@ session_start();
 if (!isset($_SESSION['usuario'])) {
     header("Location: login.php");
 }
+unset($_SESSION['personaje']);
+unset($_SESSION['enemigo']);
+unset($_SESSION['ronda']);
 $usuario = $_SESSION['usuario'];
 $errores = array();
 ?>
