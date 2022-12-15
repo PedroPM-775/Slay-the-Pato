@@ -1,9 +1,9 @@
 <?php
 session_start();
-if ((!isset($_SESSION['usuario'])) || (!isset($_SESSION['enemigo'])) || (!isset($_SESSION['personaje'])) || (!isset($_SESSION['ronda']))) {
+if ((!isset($_SESSION['usuario'])) || (!isset($_SESSION['partida'])) || (!isset($_SESSION['resultado']))) {
     header("Location: index.php");
 }
-include "Personaje.class.php";
+include "Partida.class.php";
 include "DAO.class.php";
 ?>
 <!DOCTYPE html>
@@ -40,17 +40,28 @@ include "DAO.class.php";
 </head>
 
 <body>
+    <div id="fondo">
+        <?php
+        include "menu.php";
+        $partida = unserialize($_SESSION['partida']);
+        $heroe = $partida->getheroe();
+        $villano = $partida->getvillano();
+        $resultado = $_SESSION['resultado'];
+        if ($resultado == "victoria") {
+            echo "<div id='resultadodiv'>"; ?>
+            <img id="fotoheroe" src="MULTIMEDIA/<?php echo $heroe->getNombre();  ?>.png">
+        <?php echo "<h1> Enhorabuena por tu Pato-Victoria</h1>";
+            echo "<a href='index.php'>para volver a la pantalla de inicio pulsa aqui o en el menu superior </a></div>";
+        } else {
+            echo  "<div id='resultadodiv'>"; ?>
+            <img id="fotomalo" src="MULTIMEDIA/<?php echo $villano->getNombre();  ?>.png">
+        <?php echo "<h1>Tus pato-habilidades no han bastado</h1>";
+            echo "<h3> intentalo de nuevo, ¡no te rindas!</h3>";
+            echo "<a href='index.php'>para volver a la pantalla de inicio pulsa aqui o en el menu superior </a></div>";
+        }
 
-    <?php
-    include "menu.php";
-    $resultado = $_SESSION['resultado'];
-    if ($resultado == "victoria") {
-        echo "ganaste";
-    } else {
-        echo "perdiste";
-    }
-
-    ?>
+        ?>
+    </div>
 </body>
 
 </html>

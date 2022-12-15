@@ -1,5 +1,5 @@
 <?php
-
+//@ Clase creada para manejar los datos de los personajes, tanto heroes como villanos
 class Personaje
 {
     private $nombre;
@@ -112,7 +112,7 @@ class Personaje
     }
 
 
-
+    //@ Comrpueba si el personaje ha recibido daño y le quita la vida correspondiente
     public function hacerdanho($daño)
     {
         $danorecibido = intval($this->getVidaGris()) - intval($daño);
@@ -129,6 +129,7 @@ class Personaje
         $this->setVida($this->getVida() + $davidaño);
     }
 
+    //@ Metodo al cual se le pasa un parametro entre 1 y 3, y de ahi se saca la accion que hara el villano
     public function accionvillano($accion)
     {
         $intaccion = intval($accion);

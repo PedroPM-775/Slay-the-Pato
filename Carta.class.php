@@ -1,5 +1,5 @@
 <?php
-
+//@ Clase utilizada para interactuar con las cartas guardadas en el CSV
 class Carta
 {
 

@@ -1,5 +1,6 @@
 <?php
 include "DAO.class.php";
+include "Partida.class.php";
 session_start();
 
 
@@ -41,16 +42,18 @@ session_start();
 <body>
     <?php
     include "menu.php";
-
+    $DAO = new DAO();
+    //@ Si pulsamos en el boton de Comenzar, comprueba si esta iniciada la sesion, crea un objeto partida y nos lleva a partida.php
     if (isset($_POST['comenzar'])) {
         if (isset($_SESSION['usuario'])) {
-            unset($_SESSION['personaje']);
-            unset($_SESSION['enemigo']);
-            unset($_SESSION['ronda']);
-            $_SESSION['personaje'] = $_POST['personaje'];
-            $_SESSION['enemigo'] = $_POST['enemigo'];
-            $_SESSION['ronda'] = 0;
 
+            $heroe = new Personaje($_POST['personaje']);
+            var_dump($heroe);
+            $enemigo = new Personaje($_POST['enemigo']);
+            $baraja = $DAO->leerMazo($heroe->getNombre());
+            $partida = new Partida($heroe, $enemigo, $baraja);
+
+            $_SESSION['partida'] = serialize($partida);
 
             header("Location: partida.php");
         } else {

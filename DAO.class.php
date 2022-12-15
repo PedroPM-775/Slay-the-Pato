@@ -1,6 +1,7 @@
 <?php
 include "Usuario.class.php";
 include "Carta.class.php";
+//@ Clase creada para interactuar con los archivos CSV
 class DAO
 {
     private $rutaUsuarios = "./CSV/usuarios.csv";
