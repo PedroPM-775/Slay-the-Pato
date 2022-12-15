@@ -73,7 +73,7 @@ include "Partida.class.php";
     $partida = unserialize($_SESSION['partida']);
     $heroe = $partida->getheroe();
     $villano = $partida->getvillano();
-    $baraja = $partida->getbaraja();
+    $baraja = $DAO->leerMazo($heroe->getNombre());
     $manoactual = repartirmano($baraja);
     if ($partida->getronda() == 0) {
         $manopasada = $manoactual;
