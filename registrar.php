@@ -178,10 +178,11 @@ if (isset($_SESSION['usuario'])) {
 
         <br> <br>
         <div id="contenedorform">
+            <h1>¡REGISTRATE!</h1>
             <form name="usuarios" action='registrar.php' method="post">
-                <label> Nombre de Usuario </label> <input type="text" name="nome" value="<?php if (
-                                                                                                isset($_POST['nome'])
-                                                                                            ) echo $_POST['nome'] ?>" required /> </br></br>
+                <label> Nombre </label> <input type="text" name="nome" value="<?php if (
+                                                                                    isset($_POST['nome'])
+                                                                                ) echo $_POST['nome'] ?>" required /> </br></br>
 
                 <label> Contraseña </label> <input type="password" name="contrasinal" value="<?php if (
                                                                                                     isset($_POST['contrasinal'])
@@ -196,11 +197,9 @@ if (isset($_SESSION['usuario'])) {
                                                                                                 ) echo $_POST['username'] ?>" required /></br></br>
 
                 <input type="submit" name='enviar' value="enviar" /></br></br>
-                <input type="reset" name='reset' value="resetear" /></br></br>
 
             </form>
         </div>
-        <a href="logoff.php">Cerrar Sesion</a>
     <?php
     }
     ?>

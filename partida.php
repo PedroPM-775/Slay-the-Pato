@@ -206,7 +206,7 @@ include "Partida.class.php";
                         <div class="card__details">
                             <span class="tag"><?php echo $manoactual[0]->getValor(); ?></span>
                             <span class="tag"><?php echo $manoactual[0]->getTipo(); ?></span>
-                            <div class="name"><?php echo $manoactual[0]->getNombre(); ?></div>
+                            <div class="name" style="color: black;"><?php echo $manoactual[0]->getNombre(); ?></div>
                             <input type="checkbox" name="cartac1" value="cartac1" id="cartac1">jugar
                         </div>
 
@@ -216,7 +216,7 @@ include "Partida.class.php";
                         <div class="card__details">
                             <span class="tag"><?php echo $manoactual[1]->getValor(); ?></span>
                             <span class="tag"><?php echo $manoactual[1]->getTipo(); ?></span>
-                            <div class="name"><?php echo $manoactual[1]->getNombre(); ?></div>
+                            <div class="name" style="color: black;"><?php echo $manoactual[1]->getNombre(); ?></div>
                             <input type="checkbox" name="cartac2" value="cartac2" id="cartac2">jugar
                         </div>
 
@@ -226,7 +226,7 @@ include "Partida.class.php";
                         <div class="card__details">
                             <span class="tag"><?php echo $manoactual[2]->getValor(); ?></span>
                             <span class="tag"><?php echo $manoactual[2]->getTipo(); ?></span>
-                            <div class="name"><?php echo $manoactual[2]->getNombre(); ?></div>
+                            <div class="name" style="color: black;"><?php echo $manoactual[2]->getNombre(); ?></div>
                             <input type="checkbox" name="cartac3" value="cartac3" id="cartac3">jugar
                         </div>
 
@@ -236,7 +236,7 @@ include "Partida.class.php";
                         <div class="card__details">
                             <span class="tag"><?php echo $manoactual[3]->getValor(); ?></span>
                             <span class="tag"><?php echo $manoactual[3]->getTipo(); ?></span>
-                            <div class="name"><?php echo $manoactual[3]->getNombre(); ?></div>
+                            <div class="name" style="color: black;"><?php echo $manoactual[3]->getNombre(); ?></div>
                             <input type="checkbox" name="cartac4" value="cartac4" id="cartac4">jugar
                         </div>
 
@@ -246,7 +246,7 @@ include "Partida.class.php";
                         <div class="card__details">
                             <span class="tag"><?php echo $manoactual[4]->getValor(); ?></span>
                             <span class="tag"><?php echo $manoactual[4]->getTipo(); ?></span>
-                            <div class="name"><?php echo $manoactual[4]->getNombre(); ?></div>
+                            <div class="name" style="color: black;"><?php echo $manoactual[4]->getNombre(); ?></div>
                             <input type="checkbox" name="cartac5" value="cartac5" id="cartac5">jugar
                         </div>
 

@@ -111,6 +111,7 @@ img {
   font-size: 24px;
   font-weight: 600;
   margin-top: 16px;
+  color: black;
 }
 
 p {
@@ -158,6 +159,7 @@ button {
   height: 80px;
   border-radius: 10px;
   background-color: rgb(52, 73, 58);
+  color: white;
 }
 #fondo {
   position: absolute;
