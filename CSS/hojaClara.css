@@ -173,3 +173,38 @@ button {
   padding: 10px;
   position: relative;
 }
+#contenedorindex {
+  position: absolute;
+  width: 70%;
+  height: 300px;
+  top: 10%;
+  left: 15%;
+}
+#comenzar {
+  position: absolute;
+  bottom: 150px;
+  left: 45%;
+  border-radius: 5px;
+}
+#enemigo {
+  position: absolute;
+  top: 60px;
+  right: 30px;
+  border-radius: 5px;
+}
+#personaje {
+  position: absolute;
+  top: 60px;
+  left: 30px;
+  border-radius: 5px;
+}
+#labelbueno {
+  position: absolute;
+  top: 0px;
+  left: 30px;
+}
+#labelmalo {
+  position: absolute;
+  top: 0px;
+  right: 30px;
+}

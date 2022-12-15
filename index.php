@@ -64,13 +64,14 @@ session_start();
     ?>
         <div id="contenedorindex">
             <form action="index.php" method="post">
-
+                <h1 id="labelbueno">Escoge a tu personaje</h1>
                 <select name="personaje" id="personaje">
                     <option value="PatoEspada" selected>Palanceado</option>
                     <option value="PatoEscudo">Patescudo</option>
                     <option value="PatoRifle">Francotipato</option>
 
                 </select>
+                <h1 id="labelmalo">Escoge a tu enemigo</h1>
                 <select name="enemigo" id="enemigo">
                     <option value="vader" selected>Vader</option>
                     <option value="akuma">Akuma</option>
@@ -79,8 +80,9 @@ session_start();
 
                 </select>
                 <br>
+
                 <!-- //$ Posible sugerencia, añadir imagenes de las criaturas y que con js cambien las imagenes -->
-                <input type="submit" value="comenzar" name="comenzar">
+                <input type="submit" id="comenzar" value="comenzar" name="comenzar">
             </form>
         </div>
     <?php
