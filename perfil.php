@@ -1,4 +1,8 @@
 <?php
+
+//@ Proyecto por Pedro Pina Menéndez
+
+
 include "DAO.class.php";
 session_start();
 //@ Comprobase que o usuario se autenticou

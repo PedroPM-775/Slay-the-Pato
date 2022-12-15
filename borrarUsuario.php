@@ -1,5 +1,8 @@
 <?php
 
+//@ Proyecto por Pedro Pina Menéndez
+
+
 include "DAO.class.php";
 
 //@ Recupérase a información da sesión

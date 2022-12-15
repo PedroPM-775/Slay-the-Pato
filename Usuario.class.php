@@ -1,4 +1,5 @@
 <?php
+//@ Proyecto por Pedro Pina Menéndez
 
 class Usuario
 {

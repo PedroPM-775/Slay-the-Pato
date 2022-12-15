@@ -1,4 +1,8 @@
 <?php
+
+//@ Proyecto por Pedro Pina Menéndez
+
+//@ Compruebo que los valores de la sesion esten correctos
 session_start();
 if ((!isset($_SESSION['usuario'])) || (!isset($_SESSION['partida']))) {
     header("Location: index.php");

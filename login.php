@@ -1,14 +1,8 @@
 <?php
-/*
 
-        Título: Tarefa 4 - 1
+//@ Proyecto por Pedro Pina Menéndez
 
-        Autor:Pedro Pina Menéndez
 
-        Data modificación: 17/11/2022
-        Versión 1.0
-
-    */
 include "DAO.class.php";
 //@ Borro la sesion existente para que el usuario se tenga que autenticar varias veces
 session_start();
@@ -108,6 +102,7 @@ session_destroy();
                 <input type="password" name="contrasinal" id="contrasinal">
                 <br> <br>
                 <button id="enviar" name="enviar" type="submit">LogIn</button>
+                <br>
                 <a href="registrar.php">¿No tienes cuenta? Registrate</a>
             </form>
         </div>

@@ -1,4 +1,8 @@
 <?php
+
+//@ Proyecto por Pedro Pina Menéndez
+
+
 include "DAO.class.php";
 include "Partida.class.php";
 session_start();
@@ -60,7 +64,7 @@ session_start();
             header("Location: login.php");
         }
     } else {
-
+        //@ Formulario para seleccionar personajes
     ?>
         <div id="contenedorindex">
             <form action="index.php" method="post">
@@ -76,7 +80,6 @@ session_start();
                     <option value="vader" selected>Vader</option>
                     <option value="akuma">Akuma</option>
                     <option value="firulais">Firulais</option>
-                    <option value="Jamal">Jamal</option>
 
                 </select>
                 <br>

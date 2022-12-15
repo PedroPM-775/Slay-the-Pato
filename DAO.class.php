@@ -1,4 +1,8 @@
 <?php
+
+//@ Proyecto por Pedro Pina Menéndez
+
+
 include "Usuario.class.php";
 include "Carta.class.php";
 //@ Clase creada para interactuar con los archivos CSV

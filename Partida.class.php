@@ -1,4 +1,8 @@
 <?php
+
+//@ Proyecto por Pedro Pina Menéndez
+
+
 include "Personaje.class.php";
 
 // Clase hecha para guardar los datos de los personajes y las manos, asi como otros parametros relevantes en la partida

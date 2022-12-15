@@ -1,4 +1,8 @@
 <?php
+
+//@ Proyecto por Pedro Pina Menéndez
+
+
 //@ Clase creada para manejar los datos de los personajes, tanto heroes como villanos
 class Personaje
 {
@@ -99,13 +103,6 @@ class Personaje
                 $this->setVida(20);
                 $this->setAtaque(1);
                 $this->setDefensa(1);
-                $this->setVidaGris(0);
-                break;
-            case 'jamal':
-                $this->setNombre('jamal');
-                $this->setVida(200);
-                $this->setAtaque(10);
-                $this->setDefensa(10);
                 $this->setVidaGris(0);
                 break;
         }

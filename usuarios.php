@@ -1,5 +1,8 @@
 <?php
-// Recupérase a información da sesión
+
+//@ Proyecto por Pedro Pina Menéndez
+
+
 include "DAO.class.php";
 session_start();
 unset($_SESSION['personaje']);
@@ -13,7 +16,6 @@ if (!$usuario->Admin()) {
     header("Location: index.php");
 }
 
-// Comprobase que o usuario se autenticou
 ?>
 <!DOCTYPE html>
 <html lang="en">

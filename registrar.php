@@ -1,5 +1,6 @@
 <?php
-// Recupérase a información da sesión
+//@ Proyecto por Pedro Pina Menéndez
+
 session_start();
 
 if (isset($_SESSION['usuario'])) {
@@ -197,6 +198,7 @@ if (isset($_SESSION['usuario'])) {
                                                                                                 ) echo $_POST['username'] ?>" required /></br></br>
 
                 <input type="submit" name='enviar' value="enviar" /></br></br>
+                <a href="login.php">¿Ya tienes cuenta? Inicia sesion</a>
 
             </form>
         </div>

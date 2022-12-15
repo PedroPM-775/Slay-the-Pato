@@ -1,4 +1,7 @@
 <?php
+
+//@ Proyecto por Pedro Pina Menéndez
+
 //@ Clase utilizada para interactuar con las cartas guardadas en el CSV
 class Carta
 {

@@ -1,4 +1,8 @@
 <?php
+
+//@ Proyecto por Pedro Pina Menéndez
+
+
 session_start();
 if ((!isset($_SESSION['usuario'])) || (!isset($_SESSION['partida'])) || (!isset($_SESSION['resultado']))) {
     header("Location: index.php");

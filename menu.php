@@ -10,16 +10,6 @@
 
     <div class="topnav">
         <a href="logoff.php">Salir</a>
-        <a href="configuracion.php" <?php
-                                    if (isset($_SESSION['usuario'])) {
-                                        $a = unserialize($_SESSION['usuario']);
-                                        if (!$a->Admin()) {
-                                            echo "style ='display:none;'";
-                                        }
-                                    } else {
-                                        echo "style ='display:none;'";
-                                    }
-                                    ?>>Configuracion</a>
         <a href="usuarios.php" <?php
                                 if (isset($_SESSION['usuario'])) {
                                     $a = unserialize($_SESSION['usuario']);
