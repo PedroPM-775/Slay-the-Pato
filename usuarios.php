@@ -4,6 +4,7 @@
 
 
 include "DAO.class.php";
+include "Guardado.class.php";
 session_start();
 unset($_SESSION['personaje']);
 unset($_SESSION['enemigo']);
@@ -13,7 +14,7 @@ if (!isset($_SESSION['usuario'])) {
 }
 $usuario = unserialize($_SESSION['usuario']);
 if (!$usuario->Admin()) {
-    header("Location: index.php");
+    header("Location: perfil.php");
 }
 
 ?>
@@ -161,7 +162,7 @@ if (!$usuario->Admin()) {
 
 
             //@ Usando un bucle for dentro de otro, imprimo todos los elementos del archivo en distintas filas de la tabla
-            for ($i = 1; $i < count($datos); $i++) {
+            for ($i = 0; $i < count($datos); $i++) {
                 $usuario = $datos[$i];
             ?>
                 <tr>
@@ -217,10 +218,17 @@ if (!$usuario->Admin()) {
 
                 <?php
                 }
+
+                $arraypartidas = $DAO->devolverArrayGuardados();
+
                 ?>
 
             </table>
+
+
+
         </div>
+
         <br>
 
 
@@ -236,7 +244,8 @@ if (!$usuario->Admin()) {
         }
         ?>
 
-        <br> <br>
+        <br>
+        <h2>Crear nuevo Usuario</h2><br>
         <div id="contenedorform">
             <form name="usuarios" action='usuarios.php' method="post">
                 <label> Nombre de Usuario </label> <input type="text" name="nome" value="<?php if (
@@ -266,10 +275,38 @@ if (!$usuario->Admin()) {
 
             </form>
         </div>
-        <a href="logoff.php">Cerrar Sesion</a>
-    <?php
-    }
-    ?>
+
+
+
+
+
+        <h2>Historial de todas las partidas:</h2>
+        <fieldset id="Historial">
+            <table id="tablapartidas" aria-describedby="Tabla rellena con datos de tablas.csv">
+                <caption>Tabla de datos</caption>
+                <tr>
+                    <th>Personaje</th>
+                    <th>Enemigo</th>
+                    <th>Resultado</th>
+                    <th>Usuario</th>
+                    <th>ID de la partida</th>
+                </tr>
+                <?php
+                for ($i = 1; $i < count($arraypartidas); $i++) {
+                    $partida = $arraypartidas[$i];
+                ?>
+                    <tr>
+                        <td><?php echo $partida->getpersonaje(); ?></td>
+                        <td><?php echo $partida->getenemigo(); ?></td>
+                        <td><?php echo $partida->getresultado(); ?></td>
+                        <td><?php echo $partida->getusuario(); ?></td>
+                        <td><?php echo $partida->getid(); ?></td>
+                        <?php echo "<td> <a href = 'borrarPartida.php?fila=$i'>Eliminar</a> </td>"; ?>
+                    </tr>
+            <?php
+                }
+            }
+            ?>
 </body>
 
 </html>

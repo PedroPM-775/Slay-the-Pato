@@ -6,7 +6,6 @@ body {
   width: 100%;
   height: 100%;
   top: 0px;
-
   justify-content: center;
   align-items: center;
 }
@@ -30,4 +29,5 @@ body {
 }
 #boton {
   background-color: red;
+  border-radius: 20px;
 }

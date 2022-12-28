@@ -4,6 +4,7 @@
 
 
 include "DAO.class.php";
+include "Guardado.class.php";
 
 //@ Recupérase a información da sesión
 session_start();
@@ -20,7 +21,7 @@ if (!$usuario->Admin()) {
 }
 
 $DAO = new DAO();
-$datos = $DAO->devolverArrayUsuarios();
+$datos = $DAO->devolverArrayGuardados();
 
 //@ Se coge la fila del enlace, si no se ha enviado se da un error y un enlace para volver a la pagina de usuario
 if (isset($_GET['fila'])) {
@@ -29,7 +30,7 @@ if (isset($_GET['fila'])) {
     if ($fila > 0 && $fila < count($datos)) {
         unset($datos[$fila]);
         $datosfinal = array_values($datos);
-        $DAO->escribirArrayUsuarios($datosfinal);
+        $DAO->escribirArrayGuardados($datosfinal);
         header("Location: usuarios.php");
     } else {
         echo "Ha habido un error, <a href='usuarios.php'>pulse en este enlace para volver al perfil de usuario </a>";

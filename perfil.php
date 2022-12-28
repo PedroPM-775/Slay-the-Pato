@@ -4,6 +4,7 @@
 
 
 include "DAO.class.php";
+include "Guardado.class.php";
 session_start();
 //@ Comprobase que o usuario se autenticou
 if (!isset($_SESSION['usuario'])) {
@@ -144,6 +145,52 @@ $errores = array();
 
         </form>
     </div>
+
+    <?php
+
+    $usuario = unserialize($_SESSION['usuario']);
+    $DAO = new DAO();
+    $arraypartidas = $DAO->devolverArrayGuardados();
+    $arrayconcreto = array();
+
+    for ($i = 0; $i < count($arraypartidas); $i++) {
+        $objeto = $arraypartidas[$i];
+        if ($objeto->getusuario() == $usuario->getuserName()) {
+            array_push($arrayconcreto, $objeto);
+        }
+    }
+    ?>
+
+    <h3>Historial de todas las partidas:</h3>
+    <fieldset id="Historial">
+        <table id="tablapartidas" aria-describedby="Tabla rellena con datos de tablas.csv">
+            <caption>Tabla de datos</caption>
+            <tr>
+                <th>Personaje</th>
+                <th>Enemigo</th>
+                <th>Resultado</th>
+                <th>Usuario</th>
+                <th>ID de la partida</th>
+            </tr>
+            <?php
+            for ($i = 0; $i < count($arrayconcreto); $i++) {
+                $partida = $arrayconcreto[$i];
+            ?>
+                <tr>
+                    <td><?php echo $partida->getpersonaje(); ?></td>
+                    <td><?php echo $partida->getenemigo(); ?></td>
+                    <td><?php echo $partida->getresultado(); ?></td>
+                    <td><?php echo $partida->getusuario(); ?></td>
+                    <td><?php echo $partida->getid(); ?></td>
+                </tr>
+
+
+            <?php
+            }
+
+            ?>
+
+
 
 
 

@@ -9,6 +9,7 @@ include "Carta.class.php";
 class DAO
 {
     private $rutaUsuarios = "./CSV/usuarios.csv";
+    private $rutaPartidas = "./CSV/partidas.csv";
     private $rutaMazo1 = "./MAZOS/mazo.csv";
     private $rutaMazo2 = "./MAZOS/mazo2.csv";
     private $rutaMazo3 = "./MAZOS/mazo3.csv";
@@ -17,6 +18,7 @@ class DAO
     {
     }
 
+    //@ Estos son los metodos para interactuar con los usuarios en la base de datos 
     function devolverArrayUsuarios()
     {
         $arrayDatos = array();
@@ -58,6 +60,52 @@ class DAO
         fclose($fp);
         return true;
     }
+
+
+    //@ Estos son los metodos para interactuar con el historial de partidas
+    function devolverArrayGuardados()
+    {
+        $arrayDatos = array();
+        if ($fp = fopen($this->rutaPartidas, "r")) {
+            while ($filaDatos = fgetcsv($fp, 0, ",")) {
+                $usuario = new Guardado($filaDatos[0], $filaDatos[1], $filaDatos[2], $filaDatos[3], $filaDatos[4]);
+                $arrayDatos[] = $usuario;
+            }
+        } else {
+            echo "Error, no se puede acceder al archivo " . $this->rutaPartidas . "<br>";
+            return false;
+        }
+        fclose($fp);
+        return $arrayDatos;
+    }
+
+
+    function escribirArrayGuardados($arrayObjetos)
+    {
+        $arrayEscribir = array();
+        for ($i = 0; $i < count($arrayObjetos); $i++) {
+            $objeto = $arrayObjetos[$i];
+            $arrayIntermedio = array();
+            array_push($arrayIntermedio, $objeto->getpersonaje());
+            array_push($arrayIntermedio, $objeto->getenemigo());
+            array_push($arrayIntermedio, $objeto->getresultado());
+            array_push($arrayIntermedio, $objeto->getid());
+            array_push($arrayIntermedio, $objeto->getusuario());
+            $arrayEscribir[] = $arrayIntermedio;
+        }
+
+        if ($fp = fopen($this->rutaPartidas, "w")) {
+            foreach ($arrayEscribir as $filaDatos) {
+                fputcsv($fp, $filaDatos);
+            }
+        } else {
+            echo "Error, no se pudo abrir el archivo";
+            return false;
+        }
+        fclose($fp);
+        return true;
+    }
+
 
     //@ Devuelve un array de objetos carta
     function leerMazo($parametro)

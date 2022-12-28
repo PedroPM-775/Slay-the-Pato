@@ -9,6 +9,7 @@ if ((!isset($_SESSION['usuario'])) || (!isset($_SESSION['partida'])) || (!isset(
 }
 include "Partida.class.php";
 include "DAO.class.php";
+include "Guardado.class.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,17 +41,54 @@ include "DAO.class.php";
                             } ?>;
         }
     </style>
-    <title>Document</title>
+    <title>Resultados de la batalla</title>
 </head>
 
 <body>
+
+
     <div id="fondo">
         <?php
         include "menu.php";
+        $DAO = new DAO();
+        $datos = $DAO->devolverArrayGuardados();
+        $listaid = array();
+        for ($i = 1; $i < count($datos); $i++) {
+            array_push($listaid, $datos[$i]->getid());
+        }
+
+        $unico = false;
+        while ($unico == false) {
+            $codigo = rand(1, 800000);
+            $encontrado = false;
+            for ($i = 0; $i < count($listaid); $i++) {
+                if ($codigo == $listaid[$i]) {
+                    $encontrado = true;
+                }
+            }
+            if ($encontrado != true) {
+                $unico = true;
+            }
+        }
+
+        $usuario = unserialize($_SESSION['usuario']);
+        $nombreusuario = $usuario->getuserName();
+
         $partida = unserialize($_SESSION['partida']);
         $heroe = $partida->getheroe();
+        $heroenombre = $heroe->getNombre();
+
         $villano = $partida->getvillano();
+        $villanonombre = $villano->getNombre();
+
         $resultado = $_SESSION['resultado'];
+
+
+        $guardado = new Guardado($heroenombre, $villanonombre, $resultado, $codigo, $nombreusuario);
+        array_push($datos, $guardado);
+
+        $DAO->escribirArrayGuardados($datos);
+
         if ($resultado == "victoria") {
             echo "<div id='resultadodiv'>"; ?>
             <img id="fotoheroe" src="MULTIMEDIA/<?php echo $heroe->getNombre();  ?>.png">
