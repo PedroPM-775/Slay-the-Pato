@@ -4,7 +4,10 @@
 
 
 include "Usuario.class.php";
+include "Personaje.class.php";
 include "Carta.class.php";
+include "Partida.class.php";
+include "Guardado.class.php";
 //@ Clase creada para interactuar con los archivos CSV
 class DAO
 {

@@ -4,7 +4,6 @@
 
 
 include "DAO.class.php";
-include "Guardado.class.php";
 session_start();
 unset($_SESSION['personaje']);
 unset($_SESSION['enemigo']);
@@ -77,17 +76,6 @@ if (!$usuario->Admin()) {
 
         if (!isset($_POST['contrasinal'])) {
             array_push($errores, "contrasinal");
-        }
-
-        if (isset($_POST['contrasinal'])) {
-            $contrasena = $_POST['contrasinal'];
-            if (strlen($contrasena) > 8) {
-                if (!preg_match('/[a-zA-Z0-9]+$/', $contrasena)) {
-                    array_push($errores, "El formato de la contraseña no es correcto, no debe contener simbolos extraños");
-                }
-            } else {
-                array_push($errores, "La contraseña es del tamaño incorrecto, debe de ser de al menos 8 cifras");
-            }
         }
 
         if (!isset($_POST['email'])) {

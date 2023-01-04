@@ -4,7 +4,6 @@
 
 
 include "DAO.class.php";
-include "Partida.class.php";
 session_start();
 
 

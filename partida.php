@@ -1,15 +1,13 @@
 <?php
 
-//@ Proyecto por Pedro Pina Menéndez
+// Proyecto por Pedro Pina Menéndez
 
-//@ Compruebo que los valores de la sesion esten correctos
+// Compruebo que los valores de la sesion esten correctos
 session_start();
 if ((!isset($_SESSION['usuario'])) || (!isset($_SESSION['partida']))) {
     header("Location: index.php");
 }
 include "DAO.class.php";
-include "Partida.class.php";
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +17,6 @@ include "Partida.class.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./CSS/hoja<?php
-
                                             if (isset($_COOKIE['tema'])) {
                                                 echo $_COOKIE['tema'];
                                             } else {
@@ -105,6 +102,7 @@ include "Partida.class.php";
                     break;
             }
         }
+
         if (isset($_POST['cartac2'])) {
             switch ($manopasada[1]->getTipo()) {
                 default:
@@ -116,6 +114,7 @@ include "Partida.class.php";
                     break;
             }
         }
+
         if (isset($_POST['cartac3'])) {
             switch ($manopasada[2]->getTipo()) {
                 default:
@@ -127,6 +126,7 @@ include "Partida.class.php";
                     break;
             }
         }
+
         if (isset($_POST['cartac4'])) {
             switch ($manopasada[3]->getTipo()) {
                 default:
@@ -138,6 +138,7 @@ include "Partida.class.php";
                     break;
             }
         }
+
         if (isset($_POST['cartac5'])) {
             switch ($manopasada[4]->getTipo()) {
                 default:
@@ -155,6 +156,7 @@ include "Partida.class.php";
             $_SESSION['resultado'] = "victoria";
             header("Location: resultados.php");
         }
+
         //@ El villano hace su turno, y se escoge aleatoriamente su siguiente movimiento
         $villano->setVidaGris(0);
         $accion = $villano->accionvillano($ia);
@@ -163,6 +165,7 @@ include "Partida.class.php";
         if ($accion != false) {
             $heroe->hacerdanho($accion);
         }
+
         //@ Si el heroe ha muerto, se termina automaticamente y se va a la pantalla de resultados
         if ($heroe->getVida() <= 0) {
             $_SESSION['resultado'] = "derrota";
@@ -205,6 +208,7 @@ include "Partida.class.php";
             <div id="manojugador">
 
                 <div class="container">
+
                     <div class="card">
                         <img class="imgcarta" src="MULTIMEDIA/<?php echo $manoactual[0]->getTipo() ?>.png">
                         <div class="card__details">
@@ -213,8 +217,8 @@ include "Partida.class.php";
                             <div class="name" style="color: black;"><?php echo $manoactual[0]->getNombre(); ?></div>
                             <input type="checkbox" name="cartac1" value="cartac1" id="cartac1">jugar
                         </div>
-
                     </div>
+
                     <div class="card">
                         <img class="imgcarta" src="MULTIMEDIA/<?php echo $manoactual[1]->getTipo() ?>.png">
                         <div class="card__details">
@@ -223,8 +227,8 @@ include "Partida.class.php";
                             <div class="name" style="color: black;"><?php echo $manoactual[1]->getNombre(); ?></div>
                             <input type="checkbox" name="cartac2" value="cartac2" id="cartac2">jugar
                         </div>
-
                     </div>
+
                     <div class="card">
                         <img class="imgcarta" src="MULTIMEDIA/<?php echo $manoactual[2]->getTipo() ?>.png">
                         <div class="card__details">
@@ -233,8 +237,8 @@ include "Partida.class.php";
                             <div class="name" style="color: black;"><?php echo $manoactual[2]->getNombre(); ?></div>
                             <input type="checkbox" name="cartac3" value="cartac3" id="cartac3">jugar
                         </div>
-
                     </div>
+
                     <div class="card">
                         <img class="imgcarta" src="MULTIMEDIA/<?php echo $manoactual[3]->getTipo() ?>.png">
                         <div class="card__details">
@@ -243,8 +247,8 @@ include "Partida.class.php";
                             <div class="name" style="color: black;"><?php echo $manoactual[3]->getNombre(); ?></div>
                             <input type="checkbox" name="cartac4" value="cartac4" id="cartac4">jugar
                         </div>
-
                     </div>
+
                     <div class="card">
                         <img class="imgcarta" src="MULTIMEDIA/<?php echo $manoactual[4]->getTipo() ?>.png">
                         <div class="card__details">
@@ -253,8 +257,8 @@ include "Partida.class.php";
                             <div class="name" style="color: black;"><?php echo $manoactual[4]->getNombre(); ?></div>
                             <input type="checkbox" name="cartac5" value="cartac5" id="cartac5">jugar
                         </div>
-
                     </div>
+
                 </div>
 
 
@@ -264,7 +268,6 @@ include "Partida.class.php";
                 <p> Escudo : <?php echo $heroe->getVidaGris(); ?> puntos</p>
                 <p> Ataque : <?php echo $heroe->getAtaque(); ?> puntos</p>
                 <p> Defensa : <?php echo $heroe->getDefensa(); ?> puntos</p>
-
                 <p> Vida Enemigo: <?php echo $villano->getVida(); ?> puntos</p>
                 <p> Escudo Enemigo: <?php echo $villano->getVidaGris(); ?> puntos</p>
                 <input type="submit" value="ronda" id="ronda" name="ronda">

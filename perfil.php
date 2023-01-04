@@ -4,7 +4,6 @@
 
 
 include "DAO.class.php";
-include "Guardado.class.php";
 session_start();
 //@ Comprobase que o usuario se autenticou
 if (!isset($_SESSION['usuario'])) {
@@ -31,6 +30,32 @@ $errores = array();
     $tamano = "14";
     //@ Codigo en caso de venir desde modificar
     if (isset($_POST['modificar'])) {
+
+
+        if (!empty($_FILES['foto']['name'])) {
+            $directorioSubida = "FOTOS/";
+            $extensionsValidas = array("jpg", "png");
+            $nomeFoto = $_FILES['foto']['name'];
+            $tamanoFoto = $_FILES['foto']['size'];
+            $directoriotemp = $_FILES['foto']['tmp_name'];
+            $tipoFoto = $_FILES['foto']['type'];
+            $arrayArquivo = pathinfo($nomeFoto);
+            $extension = $arrayArquivo['extension'];
+            if (!in_array($extension, $extensionsValidas)) {
+                array_push($errores, "la extension no sirve");
+            }
+            $usuario = unserialize($_SESSION['usuario']);
+            $nomeFoto = "foto_" . $usuario->getuserName();
+            if (count($errores) == 0) {
+                $nomeCompleto = $directorioSubida . $nomeFoto . ".jpg";
+                move_uploaded_file($directoriotemp, $nomeCompleto);
+            } else {
+                echo "error creando la foto";
+            }
+        }
+
+
+
         //@ Codigo para cambiar las preferencias, primero las valida
         if (!empty($_POST['tamano'])) {
             if (isset($_POST['tamano'])) {
@@ -116,7 +141,22 @@ $errores = array();
 <body>
 
     <div id="contenedorform">
-        <form action="perfil.php" method="post">
+        <form action="perfil.php" method="post" enctype="multipart/form-data">
+
+            <legend>Elige tu foto de perfil </legend>
+            <input type="file" name="foto" id="foto">
+            <br>
+            <img id="fotoperfil" src="<?php
+                                        if (file_exists($foto)) {
+                                            echo $foto;
+                                        } else {
+                                            echo "./FOTOS/default.png";
+                                        }
+
+
+                                        ?>">
+            <br>
+
             <legend> Elige tus opciones de personalización: </legend>
             <label for="lang">Tema</label>
             <select name="tema" id="lang">
@@ -170,7 +210,6 @@ $errores = array();
                 <th>Enemigo</th>
                 <th>Resultado</th>
                 <th>Usuario</th>
-                <th>ID de la partida</th>
             </tr>
             <?php
             for ($i = 0; $i < count($arrayconcreto); $i++) {
@@ -181,7 +220,6 @@ $errores = array();
                     <td><?php echo $partida->getenemigo(); ?></td>
                     <td><?php echo $partida->getresultado(); ?></td>
                     <td><?php echo $partida->getusuario(); ?></td>
-                    <td><?php echo $partida->getid(); ?></td>
                 </tr>
 
 

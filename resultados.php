@@ -2,14 +2,11 @@
 
 //@ Proyecto por Pedro Pina Menéndez
 
-
 session_start();
 if ((!isset($_SESSION['usuario'])) || (!isset($_SESSION['partida'])) || (!isset($_SESSION['resultado']))) {
     header("Location: index.php");
 }
-include "Partida.class.php";
 include "DAO.class.php";
-include "Guardado.class.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

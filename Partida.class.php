@@ -2,10 +2,7 @@
 
 //@ Proyecto por Pedro Pina Menéndez
 
-
-include "Personaje.class.php";
-
-// Clase hecha para guardar los datos de los personajes y las manos, asi como otros parametros relevantes en la partida
+//@ Clase hecha para guardar los datos de los personajes y las manos, asi como otros parametros relevantes en la partida
 class Partida
 {
     private $heroe;
@@ -41,8 +38,6 @@ class Partida
     {
         return $this->ia;
     }
-
-
 
 
     //@ Setters
@@ -81,6 +76,7 @@ class Partida
         $this->ronda = 0;
         $this->ia = 1;
     }
+
     public function empezarpartida()
     {
         $this->ronda = 1;

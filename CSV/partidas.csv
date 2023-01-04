@@ -1,7 +1,5 @@
 personaje,enemigo,resultado,id,usuario
-personajebbb,enemigobbb,h,i,pedropm
-personajeccc,l,m,n,admin
-personajeddd,g,h,i,pedropm
-personajefff,g,h,i,pedropm
-PatoRifle,firulais,victoria,797150,admin
 PatoRifle,firulais,victoria,776573,admin
+PatoEspada,vader,victoria,693646,admin
+PatoEspada,firulais,victoria,761325,admin
+PatoEscudo,akuma,victoria,577914,admin
