@@ -143,22 +143,13 @@ $errores = array();
     <div id="contenedorform">
         <form action="perfil.php" method="post" enctype="multipart/form-data">
 
-            <legend>Elige tu foto de perfil </legend>
+            <h4>Elige tu foto de perfil </h4>
             <input type="file" name="foto" id="foto">
             <br>
-            <img id="fotoperfil" src="<?php
-                                        if (file_exists($foto)) {
-                                            echo $foto;
-                                        } else {
-                                            echo "./FOTOS/default.png";
-                                        }
-
-
-                                        ?>">
             <br>
 
-            <legend> Elige tus opciones de personalización: </legend>
-            <label for="lang">Tema</label>
+            <h4>Aqui tienes tus opciones de personalizacion gráfica </h4>
+            <label for="lang">Tema de la pagina:</label>
             <select name="tema" id="lang">
                 <option value="Clara" <?php if (
                                             isset($_POST['tema']) && strcasecmp("clara", $_POST['tema'])

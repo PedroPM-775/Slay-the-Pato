@@ -1,7 +1,7 @@
 <?php
 //@ Proyecto por Pedro Pina Menéndez
 
-class Guardado
+class Progreso
 {
 
     private $id;

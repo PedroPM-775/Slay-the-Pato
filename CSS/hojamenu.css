@@ -2,6 +2,11 @@
   overflow: hidden;
   width: auto;
   height: auto;
+  background-color: white;
+  border-radius: 20px;
+  padding: 5px;
+  margin-bottom: 5px;
+  margin-left: 0px;
 }
 
 .topnav a {
@@ -17,19 +22,8 @@
 
 .topnav a:hover {
   text-decoration: underline;
-  color: white;
 }
 
-.topnav a.active {
-  color: white;
-}
-.topnav img {
-  display: block;
-  width: 38pt;
-  height: 100%;
-  margin-bottom: 0px;
-  margin-left: 0px;
-}
 .topnav p {
   display: inline;
 }
@@ -39,9 +33,12 @@
   width: min-content;
   height: 100%;
   background-color: white;
+  border: 1px solid black;
   border-radius: 20px;
 }
 #fotousuario {
+  width: 38pt;
+  height: 100%;
   display: block;
   margin-left: auto;
   margin-right: auto;
