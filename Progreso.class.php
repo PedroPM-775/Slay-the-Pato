@@ -5,9 +5,11 @@ class Progreso
 {
 
     private $id;
+    //
     private $desbloqueo1;
     private $desbloqueo2;
     private $desbloqueo3;
+    //
     private $desbloqueo4;
     private $desbloqueo5;
     private $desbloqueo6;

@@ -25,36 +25,11 @@ $errores = array();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php
 
-    include "menu.php";
+    //  include "menu.php";
 
     $tamano = "14";
     //@ Codigo en caso de venir desde modificar
     if (isset($_POST['modificar'])) {
-
-
-        if (!empty($_FILES['foto']['name'])) {
-            $directorioSubida = "FOTOS/";
-            $extensionsValidas = array("jpg", "png");
-            $nomeFoto = $_FILES['foto']['name'];
-            $tamanoFoto = $_FILES['foto']['size'];
-            $directoriotemp = $_FILES['foto']['tmp_name'];
-            $tipoFoto = $_FILES['foto']['type'];
-            $arrayArquivo = pathinfo($nomeFoto);
-            $extension = $arrayArquivo['extension'];
-            if (!in_array($extension, $extensionsValidas)) {
-                array_push($errores, "la extension no sirve");
-            }
-            $usuario = unserialize($_SESSION['usuario']);
-            $nomeFoto = "foto_" . $usuario->getuserName();
-            if (count($errores) == 0) {
-                $nomeCompleto = $directorioSubida . $nomeFoto . ".jpg";
-                move_uploaded_file($directoriotemp, $nomeCompleto);
-            } else {
-                echo "error creando la foto";
-            }
-        }
-
-
 
         //@ Codigo para cambiar las preferencias, primero las valida
         if (!empty($_POST['tamano'])) {
@@ -95,7 +70,6 @@ $errores = array();
         setcookie('tamano', '14');
         setCookie("tema", 'Clara');
         setCookie("fuente", 'calibri');
-        header("Location: index.php");
     }
 
     ?>
@@ -142,33 +116,77 @@ $errores = array();
 
     <div id="contenedorform">
         <form action="perfil.php" method="post" enctype="multipart/form-data">
+            <?php
+            $usuario = unserialize($_SESSION['usuario']);
+            $DAO = new DAO();
+            $arraypartidas = $DAO->devolverArrayGuardados();
+            $arrayconcreto = array();
+
+            for ($i = 0; $i < count($arraypartidas); $i++) {
+                $objeto = $arraypartidas[$i];
+                if ($objeto->getusuario() == $usuario->getuserName()) {
+                    array_push($arrayconcreto, $objeto);
+                }
+            }
+            echo "a <br>";
+
+            $arrayprogreso = $DAO->devolverArrayProgresos();
+            $arrayconcretoprogreso = array();
+
+            for ($i = 0; $i < count($arrayprogreso); $i++) {
+                $objeto = $arrayprogreso[$i];
+                echo $objeto->getid();
+                echo "a <br>";
+                if ($objeto->getid() == $usuario->getuserName()) {
+                    array_push($arrayconcretoprogreso, $objeto);
+                }
+            }
+            echo "a <br>";
+            var_dump($arrayconcretoprogreso);
+            echo "a";
+            ?>
 
             <h4>Elige tu foto de perfil </h4>
-            <input type="file" name="foto" id="foto">
+            <select name="cosa">
+                <?php
+
+                if ($perfil->getdesbloqueo(4) == 'y') { ?>
+                    <option value='a'>1</option> <?php
+                                                } else {
+                                                    echo "a";
+                                                }
+                                                if ($perfil->getdesbloqueo(5) == 'y') {
+                                                    echo "<option value='e' >2</option>";
+                                                }
+                                                if ($perfil->getdesbloqueo(6) == 'y') {
+                                                    echo "<option value='i' >3</option>";
+                                                }
+                                                if ($perfil->getdesbloqueo(7) == 'y') {
+                                                    echo "<option value='o' >4</option>";
+                                                }
+                                                if ($perfil->getdesbloqueo(8) == 'y') {
+                                                    echo "<option value='u'  >5</option>";
+                                                }
+
+
+                                                    ?>
+            </select>
             <br>
             <br>
 
             <h4>Aqui tienes tus opciones de personalizacion gráfica </h4>
             <label for="lang">Tema de la pagina:</label>
             <select name="tema" id="lang">
-                <option value="Clara" <?php if (
-                                            isset($_POST['tema']) && strcasecmp("clara", $_POST['tema'])
-                                        ) echo "selected"; ?>>Claro</option>
-                <option value="Oscura" <?php if (
-                                            isset($_POST['tema']) && strcasecmp("oscura", $_POST['tema'])
-                                        ) echo "selected"; ?>>Oscuro</option>
+                <option value="Clara">Claro</option>
+                <option value="Oscura">Oscuro</option>
             </select> </br></br>
 
             <label for="tamano">Tamaño de letra</label>
             <input type="number" id="tamano" name="tamano" /><br> <br>
             <label for="lang">Fuente</label>
             <select name="fuente" id="lang">
-                <option value="calibri" <?php if (
-                                            isset($_POST['fuente']) && strcasecmp("calibri", $_POST['fuente'])
-                                        ) echo "selected"; ?>>Calibri</option>
-                <option value="arial" <?php if (
-                                            isset($_POST['fuente']) && strcasecmp("arial", $_POST['fuente'])
-                                        ) echo "selected"; ?>>Arial</option>
+                <option value="calibri">Calibri</option>
+                <option value="arial">Arial</option>
             </select>
             <input type="submit" name="modificar" value="modificar">
             <input type="submit" name="defecto" value="defecto">
@@ -177,20 +195,6 @@ $errores = array();
         </form>
     </div>
 
-    <?php
-
-    $usuario = unserialize($_SESSION['usuario']);
-    $DAO = new DAO();
-    $arraypartidas = $DAO->devolverArrayGuardados();
-    $arrayconcreto = array();
-
-    for ($i = 0; $i < count($arraypartidas); $i++) {
-        $objeto = $arraypartidas[$i];
-        if ($objeto->getusuario() == $usuario->getuserName()) {
-            array_push($arrayconcreto, $objeto);
-        }
-    }
-    ?>
 
     <h3>Historial de todas las partidas:</h3>
     <table id="tablapartidas" aria-describedby="Tabla rellena con datos de tablas.csv">
@@ -216,13 +220,6 @@ $errores = array();
         }
 
         ?>
-
-
-
-
-
-
-
 
 </body>
 
