@@ -173,7 +173,7 @@ if (!$usuario->Admin()) {
 
 
     }
-    
+
     //@ Si hay errores o no se ha enviado, se imprime una lista de errores y el formulario
 
     else {
