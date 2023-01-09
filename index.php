@@ -1,6 +1,6 @@
 <?php
 
-//@ Proyecto por Pedro Pina Menéndez
+// Proyecto por Pedro Pina Menéndez
 
 
 include "DAO.class.php";

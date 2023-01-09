@@ -202,31 +202,29 @@ $errores = array();
     ?>
 
     <h3>Historial de todas las partidas:</h3>
-    <fieldset id="Historial">
-        <table id="tablapartidas" aria-describedby="Tabla rellena con datos de tablas.csv">
-            <caption>Tabla de datos</caption>
+    <table id="tablapartidas" aria-describedby="Tabla rellena con datos de tablas.csv">
+        <tr>
+            <th>Personaje</th>
+            <th>Enemigo</th>
+            <th>Resultado</th>
+            <th>Usuario</th>
+        </tr>
+        <?php
+        for ($i = 0; $i < count($arrayconcreto); $i++) {
+            $partida = $arrayconcreto[$i];
+        ?>
             <tr>
-                <th>Personaje</th>
-                <th>Enemigo</th>
-                <th>Resultado</th>
-                <th>Usuario</th>
+                <td><?php echo $partida->getpersonaje(); ?></td>
+                <td><?php echo $partida->getenemigo(); ?></td>
+                <td><?php echo $partida->getresultado(); ?></td>
+                <td><?php echo $partida->getusuario(); ?></td>
             </tr>
-            <?php
-            for ($i = 0; $i < count($arrayconcreto); $i++) {
-                $partida = $arrayconcreto[$i];
-            ?>
-                <tr>
-                    <td><?php echo $partida->getpersonaje(); ?></td>
-                    <td><?php echo $partida->getenemigo(); ?></td>
-                    <td><?php echo $partida->getresultado(); ?></td>
-                    <td><?php echo $partida->getusuario(); ?></td>
-                </tr>
 
 
-            <?php
-            }
+        <?php
+        }
 
-            ?>
+        ?>
 
 
 

@@ -52,7 +52,6 @@ session_destroy();
             $nombre = trim($_POST['nome']);
             $password = trim($_POST['contrasinal']);
             $ps = crypt($password, '$5$rounds=5000$usesomesillystringforsalt');
-            echo "a";
             while (!$loop) {
                 for ($i = 1; $i < count($datos); $i++) {
                     if (hash_equals($nombre, $datos[$i]->getuserName())) {

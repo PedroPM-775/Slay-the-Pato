@@ -8,11 +8,13 @@ include "Personaje.class.php";
 include "Carta.class.php";
 include "Partida.class.php";
 include "Guardado.class.php";
+include "Progreso.class.php";
 //@ Clase creada para interactuar con los archivos CSV
 class DAO
 {
     private $rutaUsuarios = "./CSV/usuarios.csv";
     private $rutaPartidas = "./CSV/partidas.csv";
+    private $rutaProgresos = "./CSV/progreso.csv";
     private $rutaMazo1 = "./MAZOS/mazo.csv";
     private $rutaMazo2 = "./MAZOS/mazo2.csv";
     private $rutaMazo3 = "./MAZOS/mazo3.csv";
@@ -108,6 +110,54 @@ class DAO
         fclose($fp);
         return true;
     }
+
+
+
+    //@ Estos son los metodos para interactuar con el historial de partidas
+    function devolverArrayProgresos()
+    {
+        $arrayDatos = array();
+        if ($fp = fopen($this->rutaProgresos, "r")) {
+            while ($filaDatos = fgetcsv($fp, 0, ",")) {
+                $usuario = new Guardado($filaDatos[0], $filaDatos[1], $filaDatos[2], $filaDatos[3], $filaDatos[4], $filaDatos[5], $filaDatos[6], $filaDatos[7], $filaDatos[8]);
+                $arrayDatos[] = $usuario;
+            }
+        } else {
+            echo "Error, no se puede acceder al archivo " . $this->rutaProgresos . "<br>";
+            return false;
+        }
+        fclose($fp);
+        return $arrayDatos;
+    }
+
+
+    function escribirArrayProgresos($arrayObjetos)
+    {
+        $arrayEscribir = array();
+        for ($i = 0; $i < count($arrayObjetos); $i++) {
+            $objeto = $arrayObjetos[$i];
+            $arrayIntermedio = array();
+            array_push($arrayIntermedio, $objeto->getpersonaje());
+            array_push($arrayIntermedio, $objeto->getenemigo());
+            array_push($arrayIntermedio, $objeto->getresultado());
+            array_push($arrayIntermedio, $objeto->getid());
+            array_push($arrayIntermedio, $objeto->getusuario());
+            $arrayEscribir[] = $arrayIntermedio;
+        }
+
+        if ($fp = fopen($this->rutaPartidas, "w")) {
+            foreach ($arrayEscribir as $filaDatos) {
+                fputcsv($fp, $filaDatos);
+            }
+        } else {
+            echo "Error, no se pudo abrir el archivo";
+            return false;
+        }
+        fclose($fp);
+        return true;
+    }
+
+
 
 
     //@ Devuelve un array de objetos carta
