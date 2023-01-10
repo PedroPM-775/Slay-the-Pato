@@ -27,16 +27,8 @@
 
             <img id="fotousuario" src="<?php
 
-                                        if (isset($_SESSION['usuario'])) {
-                                            $a = unserialize($_SESSION['usuario']);
-
-                                            $nombrefoto = "fotos/foto_" . $a->getuserName() . ".jpg";
-                                            if (file_exists($nombrefoto)) {
-
-                                                echo $nombrefoto;
-                                            } else {
-                                                echo "FOTOS/default.png";
-                                            }
+                                        if (isset($_COOKIE['foto'])) {
+                                            echo "FOTOS/" . $_COOKIE['foto'] . ".png";
                                         } else {
                                             echo "FOTOS/default.png";
                                         }

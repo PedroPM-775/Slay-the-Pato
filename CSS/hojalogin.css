@@ -1,5 +1,24 @@
 body {
-  background-color: rgb(111, 190, 128);
+  background: linear-gradient(
+    45deg,
+    rgb(243, 117, 117),
+    rgb(93, 93, 245),
+    rgb(231, 137, 243)
+  );
+  background-size: 1100% 1100%;
+  color: black;
+  animation: cambiar 10s ease-in-out infinite;
+}
+@keyframes cambiar {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
 }
 
 #fondo {
@@ -10,6 +29,7 @@ body {
   align-items: center;
 }
 #contenedor {
+  background-color: whitesmoke;
   border: 1px solid black;
   border-radius: 10px;
   width: 40%;

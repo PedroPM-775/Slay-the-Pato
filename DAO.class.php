@@ -119,7 +119,7 @@ class DAO
         $arrayDatos = array();
         if ($fp = fopen($this->rutaProgresos, "r")) {
             while ($filaDatos = fgetcsv($fp, 0, ",")) {
-                $progreso = new Guardado($filaDatos[0], $filaDatos[1], $filaDatos[2], $filaDatos[3], $filaDatos[4], $filaDatos[5], $filaDatos[6], $filaDatos[7], $filaDatos[8]);
+                $progreso = new Progreso($filaDatos[0], $filaDatos[1], $filaDatos[2], $filaDatos[3], $filaDatos[4], $filaDatos[5], $filaDatos[6], $filaDatos[7], $filaDatos[8]);
                 $arrayDatos[] = $progreso;
             }
         } else {

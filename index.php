@@ -76,9 +76,9 @@ session_start();
                 </select>
                 <h1 id="labelmalo">Escoge a tu enemigo</h1>
                 <select name="enemigo" id="enemigo">
-                    <option value="vader" selected>Vader</option>
-                    <option value="akuma">Akuma</option>
-                    <option value="firulais">Firulais</option>
+                    <option value="firulais">Facil</option>
+                    <option value="akuma">Normal</option>
+                    <option value="vader">Dificil</option>
 
                 </select>
                 <br>

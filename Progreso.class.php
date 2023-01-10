@@ -23,32 +23,64 @@ class Progreso
     {
         return $this->id;
     }
-    public function getdesbloqueo($indice)
+    public function desbloqueado($indice)
     {
         switch ($indice) {
             case 1:
-                return $this->desbloqueo1;
+                if ($this->desbloqueo1 == 1)
+                    return true;
+                else {
+                    return false;
+                }
                 break;
             case 2:
-                return $this->desbloqueo2;
+                if ($this->desbloqueo2 == 1)
+                    return true;
+                else {
+                    return false;
+                }
                 break;
             case 3:
-                return $this->desbloqueo3;
+                if ($this->desbloqueo3 == 1)
+                    return true;
+                else {
+                    return false;
+                }
                 break;
             case 4:
-                return $this->desbloqueo4;
+                if ($this->desbloqueo4 == 1)
+                    return true;
+                else {
+                    return false;
+                }
                 break;
             case 5:
-                return $this->desbloqueo5;
+                if ($this->desbloqueo5 == 1)
+                    return true;
+                else {
+                    return false;
+                }
                 break;
             case 6:
-                return $this->desbloqueo6;
+                if ($this->desbloqueo6 == 1)
+                    return true;
+                else {
+                    return false;
+                }
                 break;
             case 7:
-                return $this->desbloqueo7;
+                if ($this->desbloqueo7 == 1)
+                    return true;
+                else {
+                    return false;
+                }
                 break;
             case 8:
-                return $this->desbloqueo8;
+                if ($this->desbloqueo8 == 1)
+                    return true;
+                else {
+                    return false;
+                }
                 break;
         }
     }
@@ -115,5 +147,16 @@ class Progreso
         $this->setdesbloqueo(6, 'n');
         $this->setdesbloqueo(7, 'n');
         $this->setdesbloqueo(8, 'n');
+    }
+
+    public function tododesbloqueado()
+    {
+        if (
+            $this->desbloqueado(1) && $this->desbloqueado(2) && $this->desbloqueado(3) &&
+            $this->desbloqueado(4) && $this->desbloqueado(5) && $this->desbloqueado(6) &&
+            $this->desbloqueado(7) && $this->desbloqueado(8)
+        ) {
+            return true;
+        }
     }
 }

@@ -25,7 +25,7 @@ $errores = array();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php
 
-    //  include "menu.php";
+
 
     $tamano = "14";
     //@ Codigo en caso de venir desde modificar
@@ -53,12 +53,14 @@ $errores = array();
             unset($_COOKIE['tamano']);
             unset($_COOKIE['tema']);
             unset($_COOKIE['fuente']);
+            unset($_COOKIE['foto']);
             if (empty($_POST['tamano'])) {
                 setcookie('tamano', '14');
             } else {
                 setcookie('tamano', $_POST['tamano']);
             }
             setCookie("tema", $_POST['tema']);
+            setCookie("foto", $_POST['foto']);
             setCookie("fuente", $_POST['fuente']);
         }
     }
@@ -67,9 +69,10 @@ $errores = array();
         unset($_COOKIE['tamano']);
         unset($_COOKIE['tema']);
         unset($_COOKIE['fuente']);
-        setcookie('tamano', '14');
+        setcookie("tamano", '14');
         setCookie("tema", 'Clara');
         setCookie("fuente", 'calibri');
+        setCookie("foto", "default");
     }
 
     ?>
@@ -113,7 +116,11 @@ $errores = array();
 </head>
 
 <body>
+    <?php
 
+    include "menu.php";
+    ?>
+    <h2>Opciones de Visualizacion</h2>
     <div id="contenedorform">
         <form action="perfil.php" method="post" enctype="multipart/form-data">
             <?php
@@ -128,48 +135,40 @@ $errores = array();
                     array_push($arrayconcreto, $objeto);
                 }
             }
-            echo "a <br>";
 
             $arrayprogreso = $DAO->devolverArrayProgresos();
             $arrayconcretoprogreso = array();
 
-            for ($i = 0; $i < count($arrayprogreso); $i++) {
+            for ($i = 1; $i < count($arrayprogreso); $i++) {
                 $objeto = $arrayprogreso[$i];
-                echo $objeto->getid();
-                echo "a <br>";
                 if ($objeto->getid() == $usuario->getuserName()) {
                     array_push($arrayconcretoprogreso, $objeto);
                 }
             }
-            echo "a <br>";
-            var_dump($arrayconcretoprogreso);
-            echo "a";
             ?>
 
             <h4>Elige tu foto de perfil </h4>
-            <select name="cosa">
+            <select name="foto">
                 <?php
 
-                if ($perfil->getdesbloqueo(4) == 'y') { ?>
-                    <option value='a'>1</option> <?php
-                                                } else {
-                                                    echo "a";
-                                                }
-                                                if ($perfil->getdesbloqueo(5) == 'y') {
-                                                    echo "<option value='e' >2</option>";
-                                                }
-                                                if ($perfil->getdesbloqueo(6) == 'y') {
-                                                    echo "<option value='i' >3</option>";
-                                                }
-                                                if ($perfil->getdesbloqueo(7) == 'y') {
-                                                    echo "<option value='o' >4</option>";
-                                                }
-                                                if ($perfil->getdesbloqueo(8) == 'y') {
-                                                    echo "<option value='u'  >5</option>";
-                                                }
+                $progreso = $arrayconcretoprogreso[0];
+                if ($progreso->desbloqueado(4)) {
+                    echo "<option value='uno' >PatoDefecto</option>";
+                }
+                if ($progreso->desbloqueado(5)) {
+                    echo "<option value='dos' >PatoBlanco</option>";
+                }
+                if ($progreso->desbloqueado(6)) {
+                    echo "<option value='tres' >PatoGoma</option>";
+                }
+                if ($progreso->desbloqueado(7)) {
+                    echo "<option value='cuatro' >PatoMorision</option>";
+                }
+                if ($progreso->desbloqueado(8)) {
+                    echo "<option value='cinco' >PatoDonald</option>";
+                }
 
-
-                                                    ?>
+                ?>
             </select>
             <br>
             <br>
@@ -196,7 +195,7 @@ $errores = array();
     </div>
 
 
-    <h3>Historial de todas las partidas:</h3>
+    <h2>Historial de tus partidas:</h2>
     <table id="tablapartidas" aria-describedby="Tabla rellena con datos de tablas.csv">
         <tr>
             <th>Personaje</th>

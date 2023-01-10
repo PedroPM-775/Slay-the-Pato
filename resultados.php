@@ -86,17 +86,31 @@ include "DAO.class.php";
 
         $DAO->escribirArrayGuardados($datos);
 
+        $arrayprogreso = $DAO->devolverArrayProgresos();
+        $arrayconcretoprogreso = array();
+
+        for ($i = 1; $i < count($arrayprogreso); $i++) {
+            $objeto = $arrayprogreso[$i];
+            if ($objeto->getid() == $usuario->getuserName()) {
+                array_push($arrayconcretoprogreso, $objeto);
+            }
+        }
+
+        $progreso = $arrayconcretoprogreso[0];
+        if ($progreso->tododesbloqueado()) {
+        }
+
         if ($resultado == "victoria") {
             echo "<div id='resultadodiv'>"; ?>
             <img id="fotoheroe" src="MULTIMEDIA/<?php echo $heroe->getNombre();  ?>.png">
         <?php echo "<h1> Enhorabuena por tu Pato-Victoria</h1>";
-            echo "<a href='index.php'>para volver a la pantalla de inicio pulsa aqui o en el menu superior </a></div>";
+            echo "<a id='enlaceresultados' href='index.php'>para volver a la pantalla de inicio pulsa aqui o en el menu superior </a></div>";
         } else {
             echo  "<div id='resultadodiv'>"; ?>
             <img id="fotomalo" src="MULTIMEDIA/<?php echo $villano->getNombre();  ?>.png">
         <?php echo "<h1>Tus pato-habilidades no han bastado</h1>";
             echo "<h3> intentalo de nuevo, ¡no te rindas!</h3>";
-            echo "<a href='index.php'>para volver a la pantalla de inicio pulsa aqui o en el menu superior </a></div>";
+            echo "<a id='enlaceresultados' href='index.php'>para volver a la pantalla de inicio pulsa aqui o en el menu superior </a></div>";
         }
 
         ?>

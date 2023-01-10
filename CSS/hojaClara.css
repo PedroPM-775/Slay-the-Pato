@@ -1,6 +1,24 @@
 body {
-  background-color: rgb(111, 190, 128);
+  background: linear-gradient(
+    45deg,
+    rgb(243, 117, 117),
+    rgb(93, 93, 245),
+    rgb(231, 137, 243)
+  );
+  background-size: 1100% 1100%;
   color: black;
+  animation: cambiar 10s ease-in-out infinite;
+}
+@keyframes cambiar {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
 }
 
 table,
@@ -8,6 +26,7 @@ th,
 td {
   border: 1px solid black;
   padding: 12px 15px;
+  background-color: whitesmoke;
 }
 th {
   background-color: rgb(77, 77, 77);
@@ -19,6 +38,14 @@ table {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
+a {
+  color: black;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
 #caja {
   border: 1px solid black;
   border-radius: 5px;
@@ -26,11 +53,13 @@ table {
 }
 
 #contenedorform {
+  background-color: whitesmoke;
   border: 1px solid black;
   border-radius: 10px;
   width: 40%;
   text-align: center;
   margin: auto;
+  padding-top: 10px;
 }
 
 .imagen {
@@ -178,6 +207,7 @@ button {
   position: relative;
 }
 #contenedorindex {
+  background-color: whitesmoke;
   position: absolute;
   width: 70%;
   height: 300px;
@@ -185,6 +215,7 @@ button {
   left: 15%;
   border: 1px solid black;
   border-radius: 10px;
+  color: black;
 }
 #comenzar {
   position: absolute;
