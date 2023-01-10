@@ -1,4 +1,3 @@
 nombre,contrasena,correo,username,rol
 pedroadmin,$5$rounds=5000$usesomesillystri$NA20xR0R15QzYi9z9KbGLtWkmeK1Ms24ZCW.BAI0zA7,nopedro@gmail.com,admin,Administrador
 pedro,$5$rounds=5000$usesomesillystri$7T9MMLYXVSI0quYwPJzkla144.I9K4OReKMBfRjqx59,pedro@gmail.com,pedropm,Usuario
-mercedes,$5$rounds=5000$usesomesillystri$mHvDx34CgoxahFQPbzNPF4HK71XWd67g40NrPX4Mvu3,mercedes@gmail.com,mercedes,Usuario

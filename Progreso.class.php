@@ -183,29 +183,29 @@ class Progreso
     }
 
     //@ Metodos de verdad
-    public function __construct($id, $uno, $dos, $tres, $cuatro, $cinco, $seis, $siete, $ocho)
+    public function __construct($id)
     {
         $this->setid($id);
-        $this->setdesbloqueo(1, $uno);
-        $this->setdesbloqueo(2, $dos);
-        $this->setdesbloqueo(3, $tres);
-        $this->setdesbloqueo(4, $cuatro);
-        $this->setdesbloqueo(5, $cinco);
-        $this->setdesbloqueo(6, $seis);
-        $this->setdesbloqueo(7, $siete);
-        $this->setdesbloqueo(8, $ocho);
+        $this->setdesbloqueo(1, 1);
+        $this->setdesbloqueo(2, 0);
+        $this->setdesbloqueo(3, 0);
+        $this->setdesbloqueo(4, 1);
+        $this->setdesbloqueo(5, 0);
+        $this->setdesbloqueo(6, 0);
+        $this->setdesbloqueo(7, 0);
+        $this->setdesbloqueo(8, 0);
     }
 
-    public function cuentanueva()
+    public function cuentaadmin()
     {
-        $this->setdesbloqueo(1, 'y');
-        $this->setdesbloqueo(2, 'n');
-        $this->setdesbloqueo(3, 'n');
-        $this->setdesbloqueo(4, 'y');
-        $this->setdesbloqueo(5, 'n');
-        $this->setdesbloqueo(6, 'n');
-        $this->setdesbloqueo(7, 'n');
-        $this->setdesbloqueo(8, 'n');
+        $this->setdesbloqueo(1, 1);
+        $this->setdesbloqueo(2, 1);
+        $this->setdesbloqueo(3, 1);
+        $this->setdesbloqueo(4, 1);
+        $this->setdesbloqueo(5, 1);
+        $this->setdesbloqueo(6, 1);
+        $this->setdesbloqueo(7, 1);
+        $this->setdesbloqueo(8, 1);
     }
 
     public function tododesbloqueado()

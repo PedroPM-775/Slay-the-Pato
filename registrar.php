@@ -126,7 +126,10 @@ if (isset($_SESSION['usuario'])) {
             array_push($datos, $objeto);
 
             $DAO->escribirArrayUsuarios($datos);
-
+            $progreso = new Progreso($_POST['username']);
+            $arrayprogresos = $DAO->devolverArrayProgresos();
+            array_push($arrayprogresos, $progreso);
+            $DAO->escribirArrayProgresos($arrayprogresos);
             session_start();
             $_SESSION['usuario'] = serialize($objeto);
 

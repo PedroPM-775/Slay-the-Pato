@@ -127,12 +127,21 @@ if (!$usuario->Admin()) {
             $string = $_POST['username'];
             $stringtrim = ltrim($string);
 
-            array_push($introducir, "Usuario");
+            $rol = $_POST['rol'];
+            array_push($introducir, $rol);
 
             $objeto = new Usuario($introducir[0], $introducir[1], $introducir[2], $introducir[3], $introducir[4]);
             array_push($datos, $objeto);
 
             $DAO->escribirArrayUsuarios($datos);
+
+            $progreso = new Progreso($_POST['username']);
+            if ($rol == "Administrador") {
+                $progreso->cuentaadmin();
+            }
+            $arrayprogresos = $DAO->devolverArrayProgresos();
+            array_push($arrayprogresos, $progreso);
+            $DAO->escribirArrayProgresos($arrayprogresos);
         }
 
     ?>
