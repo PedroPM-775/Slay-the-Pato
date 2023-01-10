@@ -23,6 +23,42 @@ class Progreso
     {
         return $this->id;
     }
+
+    public function getdes1()
+    {
+        return $this->desbloqueo1;
+    }
+    public function getdes2()
+    {
+        return $this->desbloqueo2;
+    }
+    public function getdes3()
+    {
+        return $this->desbloqueo3;
+    }
+    public function getdes4()
+    {
+        return $this->desbloqueo4;
+    }
+    public function getdes5()
+    {
+        return $this->desbloqueo5;
+    }
+    public function getdes6()
+    {
+        return $this->desbloqueo6;
+    }
+    public function getdes7()
+    {
+        return $this->desbloqueo7;
+    }
+    public function getdes8()
+    {
+        return $this->desbloqueo8;
+    }
+
+
+
     public function desbloqueado($indice)
     {
         switch ($indice) {
@@ -122,6 +158,30 @@ class Progreso
         }
     }
 
+    public function desbloquear($indice)
+    {
+        switch ($indice) {
+            case 2:
+                $this->desbloqueo2 = 1;
+                break;
+            case 3:
+                $this->desbloqueo3 = 1;
+                break;
+            case 5:
+                $this->desbloqueo5 = 1;
+                break;
+            case 6:
+                $this->desbloqueo6 = 1;
+                break;
+            case 7:
+                $this->desbloqueo7 = 1;
+                break;
+            case 8:
+                $this->desbloqueo8 = 1;
+                break;
+        }
+    }
+
     //@ Metodos de verdad
     public function __construct($id, $uno, $dos, $tres, $cuatro, $cinco, $seis, $siete, $ocho)
     {
@@ -136,9 +196,8 @@ class Progreso
         $this->setdesbloqueo(8, $ocho);
     }
 
-    public function cuentanueva($id)
+    public function cuentanueva()
     {
-        $this->setid($id);
         $this->setdesbloqueo(1, 'y');
         $this->setdesbloqueo(2, 'n');
         $this->setdesbloqueo(3, 'n');
@@ -157,6 +216,16 @@ class Progreso
             $this->desbloqueado(7) && $this->desbloqueado(8)
         ) {
             return true;
+        }
+    }
+
+
+    public function desbloquearsiguiente()
+    {
+        for ($i = 1; $i < 9; $i++) {
+            if (!$this->desbloqueado($i)) {
+                return $i;
+            }
         }
     }
 }

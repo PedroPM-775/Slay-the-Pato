@@ -6,10 +6,15 @@
 </head>
 
 <body>
-    <!--//@ Barra de menu que muestra determinados elementos si tienes rol de administrador-->
+    <!--//@ Barra de menu que muestra determinados elementos si tienes rol de administrador o si estas registrado-->
 
     <div class="topnav">
-        <a href="logoff.php">Salir</a>
+        <?php if (isset($_SESSION['usuario'])) {
+        ?>
+            <a href="logoff.php">Salir</a>
+        <?php } else { ?>
+            <a href="login.php">Inicia Sesion/Registrate</a>
+        <?php } ?>
         <a href="usuarios.php" <?php
                                 if (isset($_SESSION['usuario'])) {
                                     $a = unserialize($_SESSION['usuario']);

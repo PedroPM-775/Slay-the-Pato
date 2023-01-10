@@ -75,15 +75,39 @@ session_start();
 
                 </select>
                 <h1 id="labelmalo">Escoge a tu enemigo</h1>
+
                 <select name="enemigo" id="enemigo">
                     <option value="firulais">Facil</option>
-                    <option value="akuma">Normal</option>
-                    <option value="vader">Dificil</option>
+                    <?php
+                    if (isset($_SESSION['usuario'])) {
+                        $usuario = unserialize(($_SESSION['usuario']));
+                        $arrayprogreso = $DAO->devolverArrayProgresos();
+                        $arrayconcretoprogreso = array();
+
+                        for ($i = 1; $i < count($arrayprogreso); $i++) {
+                            $objeto = $arrayprogreso[$i];
+                            if ($objeto->getid() == $usuario->getuserName()) {
+                                array_push($arrayconcretoprogreso, $objeto);
+                            }
+                        }
+                        $progreso = $arrayconcretoprogreso[0];
+                        var_dump($progreso);
+
+                        if ($progreso->desbloqueado(2)) {
+
+                            echo " <option value='akuma'>Normal</option>";
+                        }
+                        if ($progreso->desbloqueado(3)) {
+
+                            echo " <option value='vader'>Dificil</option>";
+                        }
+                    } ?>
+
+
 
                 </select>
                 <br>
 
-                <!-- //$ Posible sugerencia, añadir imagenes de las criaturas y que con js cambien las imagenes -->
                 <input type="submit" id="comenzar" value="comenzar" name="comenzar">
             </form>
         </div>

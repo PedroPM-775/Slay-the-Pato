@@ -96,15 +96,31 @@ include "DAO.class.php";
             }
         }
 
-        $progreso = $arrayconcretoprogreso[0];
-        if ($progreso->tododesbloqueado()) {
-        }
 
         if ($resultado == "victoria") {
             echo "<div id='resultadodiv'>"; ?>
             <img id="fotoheroe" src="MULTIMEDIA/<?php echo $heroe->getNombre();  ?>.png">
-        <?php echo "<h1> Enhorabuena por tu Pato-Victoria</h1>";
-            echo "<a id='enlaceresultados' href='index.php'>para volver a la pantalla de inicio pulsa aqui o en el menu superior </a></div>";
+            <?php echo "<h1> Enhorabuena por tu Pato-Victoria</h1>";
+            echo "<a id='enlaceresultados' href='index.php'>para volver a la pantalla de inicio pulsa aqui o en el menu superior </a>";
+
+            $progreso = $arrayconcretoprogreso[0];
+            if ($progreso->tododesbloqueado()) {
+                echo "<p> Enhorabuena, ya has desbloqueado todos el contenido. ¡Bien hecho!</p></div>";
+            } else {
+                $indice = $progreso->desbloquearsiguiente();
+                $progreso->desbloquear($indice);
+                echo  "<p> Acabas de desbloquear algo nuevo por tu victoria, ¡Bien hecho!</p></div>";
+
+                for ($i = 1; $i < count($arrayprogreso); $i++) {
+                    $objeto = $arrayprogreso[$i];
+                    if ($objeto->getid() == $usuario->getuserName()) {
+                        unset($arrayprogreso[$i]);
+                    }
+                }
+                $arrayfinal = array_values($arrayprogreso);
+                array_push($arrayfinal, $progreso);
+                $DAO->escribirArrayProgresos($arrayfinal);
+            }
         } else {
             echo  "<div id='resultadodiv'>"; ?>
             <img id="fotomalo" src="MULTIMEDIA/<?php echo $villano->getNombre();  ?>.png">

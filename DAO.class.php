@@ -119,7 +119,17 @@ class DAO
         $arrayDatos = array();
         if ($fp = fopen($this->rutaProgresos, "r")) {
             while ($filaDatos = fgetcsv($fp, 0, ",")) {
-                $progreso = new Progreso($filaDatos[0], $filaDatos[1], $filaDatos[2], $filaDatos[3], $filaDatos[4], $filaDatos[5], $filaDatos[6], $filaDatos[7], $filaDatos[8]);
+                $progreso = new Progreso(
+                    $filaDatos[0],
+                    $filaDatos[1],
+                    $filaDatos[2],
+                    $filaDatos[3],
+                    $filaDatos[4],
+                    $filaDatos[5],
+                    $filaDatos[6],
+                    $filaDatos[7],
+                    $filaDatos[8]
+                );
                 $arrayDatos[] = $progreso;
             }
         } else {
@@ -137,15 +147,19 @@ class DAO
         for ($i = 0; $i < count($arrayObjetos); $i++) {
             $objeto = $arrayObjetos[$i];
             $arrayIntermedio = array();
-            array_push($arrayIntermedio, $objeto->getpersonaje());
-            array_push($arrayIntermedio, $objeto->getenemigo());
-            array_push($arrayIntermedio, $objeto->getresultado());
             array_push($arrayIntermedio, $objeto->getid());
-            array_push($arrayIntermedio, $objeto->getusuario());
+            array_push($arrayIntermedio, $objeto->getdes1());
+            array_push($arrayIntermedio, $objeto->getdes2());
+            array_push($arrayIntermedio, $objeto->getdes3());
+            array_push($arrayIntermedio, $objeto->getdes4());
+            array_push($arrayIntermedio, $objeto->getdes5());
+            array_push($arrayIntermedio, $objeto->getdes6());
+            array_push($arrayIntermedio, $objeto->getdes7());
+            array_push($arrayIntermedio, $objeto->getdes8());
             $arrayEscribir[] = $arrayIntermedio;
         }
 
-        if ($fp = fopen($this->rutaPartidas, "w")) {
+        if ($fp = fopen($this->rutaProgresos, "w")) {
             foreach ($arrayEscribir as $filaDatos) {
                 fputcsv($fp, $filaDatos);
             }
