@@ -1,15 +1,16 @@
 <?php
 //@ Proyecto por Pedro Pina Menéndez
-
+//@ Esta clase fue creada para gestionar los elementos desbloqueados por el jugador segun va jugando.
 class Progreso
 {
-
+    //@ El atributo ID es el usuario.
     private $id;
-    //
+    //@ Los atributos desbloqueo 1,2 y 3 sirven para gestionar los niveles de dificultad desbloqueados por el jugador
+    //@ Siendo el parametro 1 el nivel facil, el parametro 2 el nivel medio, y el parametro 3 el nivel dificil
     private $desbloqueo1;
     private $desbloqueo2;
     private $desbloqueo3;
-    //
+    //@ Los demas atributos sirven para gestionar que imagenes de perfil ha desbloqueado el jugador.
     private $desbloqueo4;
     private $desbloqueo5;
     private $desbloqueo6;
@@ -158,6 +159,7 @@ class Progreso
         }
     }
 
+    //@ Esta funcion sirve para cambiar el valor de algun elemento a estar desbloqueado
     public function desbloquear($indice)
     {
         switch ($indice) {
@@ -195,6 +197,7 @@ class Progreso
         $this->setdesbloqueo(7, $siete);
         $this->setdesbloqueo(8, $ocho);
     }
+    //@ Esta funcion sirve para desbloquear todo el contenido, solo se ejecuta al crear una cuenta con permisos de administrador en usuarios.php
 
     public function cuentaadmin()
     {
@@ -207,7 +210,7 @@ class Progreso
         $this->setdesbloqueo(7, 1);
         $this->setdesbloqueo(8, 1);
     }
-
+    //@ Esta funcion sirve para comprobar si está todo el contenido desbloqueado
     public function tododesbloqueado()
     {
         if (
@@ -219,7 +222,7 @@ class Progreso
         }
     }
 
-
+    //@ Esta funcion sirve para ver cual es el siguiente contenido a desbloquear, y devuelve el ID del contenido
     public function desbloquearsiguiente()
     {
         for ($i = 1; $i < 9; $i++) {

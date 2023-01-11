@@ -31,7 +31,9 @@
 
         <div id="usuario">
 
-            <img id="fotousuario" src="<?php
+            <img id="fotousuario" src=" <?php
+
+                                        //@ Compruebo si se ha elegido una foto de perfil para el usuario
 
                                         if (isset($_COOKIE['foto'])) {
                                             echo "FOTOS/" . $_COOKIE['foto'] . ".png";

@@ -1,9 +1,10 @@
 <?php
 //@ Proyecto por Pedro Pina Menéndez
 
+//@ Esta clase fue creada para gestionar los usuarios que hay en la base de datos
 class Usuario
 {
-
+    //@ Los atributos que tiene la clase son el nombre del usuario, su contraseña, su correo, su nombre de usuario y su rol
     private $nombre;
     private $contrasena;
     private $correo;
@@ -68,7 +69,7 @@ class Usuario
         $this->setRol($rol);
     }
 
-
+    //@ Esta funcion comprueba si el atributo "rol" es de administrador, y devuelve true si es asi o false si es solo un usuario corriente
     public function Admin()
     {
         if ($this->rol == 'Administrador') {

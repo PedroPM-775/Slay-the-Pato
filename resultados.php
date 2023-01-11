@@ -1,6 +1,8 @@
 <?php
 
 //@ Proyecto por Pedro Pina Menéndez
+//@ En esta pagina se muestra el resultado de la batalla, asi como se le puede indicar 
+//@ al jugador que ha desbloqueado nuevo contenido
 
 session_start();
 if ((!isset($_SESSION['usuario'])) || (!isset($_SESSION['partida'])) || (!isset($_SESSION['resultado']))) {

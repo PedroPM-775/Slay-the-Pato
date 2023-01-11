@@ -5,6 +5,7 @@
 //@ Clase utilizada para interactuar con las cartas guardadas en el CSV
 class Carta
 {
+    //@ Los atributos de la clase son los elementos que tiene la carta(nombre, valor y tipo)
 
     private $nombre;
     private $tipo;

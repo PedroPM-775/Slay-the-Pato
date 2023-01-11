@@ -1,6 +1,6 @@
 <?php
 //@ Proyecto por Pedro Pina Menéndez
-
+//@ Esta es la pagina usada para que un nuevo usuario cree su propia cuenta
 session_start();
 
 if (isset($_SESSION['usuario'])) {
@@ -126,6 +126,8 @@ if (isset($_SESSION['usuario'])) {
             array_push($datos, $objeto);
 
             $DAO->escribirArrayUsuarios($datos);
+
+            //@ Al crear un nuevo usuario, creamos tambien un nuevo guardado para ese perfil
             $progreso = new Progreso($_POST['username'], 1, 0, 0, 1, 0, 0, 0, 0);
             $arrayprogresos = $DAO->devolverArrayProgresos();
             array_push($arrayprogresos, $progreso);

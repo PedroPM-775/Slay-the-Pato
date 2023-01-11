@@ -1,10 +1,11 @@
 <?php
 
 //@ Proyecto por Pedro Pina Menéndez
-
+//@ Esta es la pagina que se usa para iniciar sesión.
 
 include "DAO.class.php";
-//@ Borro la sesion existente para que el usuario se tenga que autenticar varias veces
+
+//@ Borro la sesion ya existente si existe alguna.
 session_start();
 session_destroy();
 ?>
@@ -25,7 +26,8 @@ session_destroy();
     $DAO = new DAO();
     $datos = $DAO->devolverArrayUsuarios();
     $encontrado = false;
-    //@ Compruebo si los datos estan en la base de datos
+
+    //@ Compruebo si los datos del formulario de inicio de sesion estan en la base de datos
     if (isset($_POST['enviar'])) {
 
         $valido = true;
@@ -46,6 +48,9 @@ session_destroy();
             }
         }
 
+
+        //@ Despues de comprobar que todos los caracteres son validos, el programa comprueba si 
+        //@ los datos estan en la base de datos
         if ($valido) {
             $loop = false;
             $numfila;
@@ -66,9 +71,11 @@ session_destroy();
             }
         }
     }
+    //@ Si los datos están en la base de datos, el programa inicia sesion y te conduce a una pagina u otra 
+    //@ dependiendo de si eres usuario normal o administrador
     if ($encontrado) {
         $usuario = $datos[$numfila];
-        //@ codigo de autenticacion y mandar a la pagina de usuarios.php
+
         session_start();
         $_SESSION['usuario'] = serialize($usuario);
         if ($usuario->Admin()) {
@@ -102,6 +109,7 @@ session_destroy();
                 <br> <br>
                 <button id="enviar" name="enviar" type="submit">LogIn</button>
                 <br>
+                <!-- //@ Este enlace te lleva a la pagina de registro, para que te crees cuenta en caso de no tenerla -->
                 <a href="registrar.php">¿No tienes cuenta? Registrate</a>
             </form>
         </div>

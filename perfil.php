@@ -1,7 +1,8 @@
 <?php
 
 //@ Proyecto por Pedro Pina Menéndez
-
+//@ Esta es la pagina en la cual el usuario puede configurar los detalles graficos de la interfaz, ver sus partidas y cambiar
+//@ su foto de perfil
 
 include "DAO.class.php";
 session_start();
@@ -26,8 +27,8 @@ $errores = array();
     <?php
 
 
-
     $tamano = "14";
+
     //@ Codigo en caso de venir desde modificar
     if (isset($_POST['modificar'])) {
 
@@ -48,6 +49,12 @@ $errores = array();
 
             array_push($errores, "Falta la fuente");
         }
+
+        if (!isset($_POST['foto'])) {
+
+            array_push($errores, "Falta la foto");
+        }
+
         //@ Escribo los datos en la cookie si no hay errores
         if (count($errores) == 0) {
             unset($_COOKIE['tamano']);
@@ -153,6 +160,8 @@ $errores = array();
             <select name="foto">
                 <?php
 
+                //@ En este select el usuario escoge su foto de perfil de entre todas las que haya desbloqueado
+
                 if ($progreso->desbloqueado(4)) {
                     echo "<option value='uno' >PatoDefecto</option>";
                 }
@@ -197,7 +206,8 @@ $errores = array();
 
 
     <h2>Historial de tus partidas:</h2>
-    <table id="tablapartidas" aria-describedby="Tabla rellena con datos de tablas.csv">
+    <!--      //@ En esta tabla aparecen todas las partidas del jugador       -->
+    <table id="tablapartidas">
         <tr>
             <th>Personaje</th>
             <th>Enemigo</th>

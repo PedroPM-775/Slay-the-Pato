@@ -1,9 +1,12 @@
 <?php
 //@ Proyecto por Pedro Pina Menéndez
 
+//@ Esta clase es una clase creada para poder almacenar y gestionar el historial de partidas del juego
 class Guardado
 {
 
+    //@ Los atributos de la clase son los elementos que se guardan de cada partida en el historial
+    //@ El personaje del jugador, el enemigo al que se enfrentó, el resultado de la partida, el id y el nombre de usuario del jugador
     private $personaje;
     private $enemigo;
     private $resultado;

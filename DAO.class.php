@@ -23,7 +23,7 @@ class DAO
     {
     }
 
-    //@ Estos son los metodos para interactuar con los usuarios en la base de datos 
+    //@ Este metodo devuelve un array de objetos Usuario, relleno con los datos del archivo /csv/usuarios.csv
     function devolverArrayUsuarios()
     {
         $arrayDatos = array();
@@ -40,6 +40,7 @@ class DAO
         return $arrayDatos;
     }
 
+    //@ Este metodo recibe como parametro un array de objetos de tipo Usuario y escribe su contenido en el archivo /csv/usuarios.csv
     function escribirArrayUsuarios($arrayObjetos)
     {
         $arrayEscribir = array();
@@ -67,7 +68,7 @@ class DAO
     }
 
 
-    //@ Estos son los metodos para interactuar con el historial de partidas
+    //@ Este metodo devuelve un array de objetos Guardado, relleno con los datos del archivo /csv/partidas.csv
     function devolverArrayGuardados()
     {
         $arrayDatos = array();
@@ -84,7 +85,7 @@ class DAO
         return $arrayDatos;
     }
 
-
+    //@ Este metodo recibe como parametro un array de objetos de tipo Guardado y escribe su contenido en el archivo /csv/partidas.csv
     function escribirArrayGuardados($arrayObjetos)
     {
         $arrayEscribir = array();
@@ -113,7 +114,7 @@ class DAO
 
 
 
-    //@ Estos son los metodos para interactuar con los progresos
+    //@ Este metodo devuelve un array de objetos Progreso, relleno con los datos del archivo /csv/progreso.csv
     function devolverArrayProgresos()
     {
         $arrayDatos = array();
@@ -140,7 +141,7 @@ class DAO
         return $arrayDatos;
     }
 
-
+    //@ Este metodo recibe como parametro un array de objetos de tipo Progreso y escribe su contenido en el archivo /csv/progreso.csv
     function escribirArrayProgresos($arrayObjetos)
     {
         $arrayEscribir = array();
@@ -174,7 +175,7 @@ class DAO
 
 
 
-    //@ Devuelve un array de objetos carta
+    //@ Este metodo devuelve un array de objetos Carta, relleno con los datos del archivo /mazos/(mazo que se le pase).csv
     function leerMazo($parametro)
     {
         if ($parametro == 'PatoEspada') {

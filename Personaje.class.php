@@ -6,6 +6,8 @@
 //@ Clase creada para manejar los datos de los personajes, tanto heroes como villanos
 class Personaje
 {
+    //@ Los atributos de la clase son los elementos de los personajes: su nombre, puntos de vida, escudo
+    //@ y puntos de ataque y defensa nativos.
     private $nombre;
     private $vida;
     private $ataque;
@@ -120,13 +122,13 @@ class Personaje
         }
     }
 
-
+    //@ Esta funcion suma la vida que se le pasa como parametro a la vida del personaje
     public function curar($davidaño)
     {
         $this->setVida($this->getVida() + $davidaño);
     }
 
-    //@ Metodo al cual se le pasa un parametro entre 1 y 3, y de ahi se saca la accion que hara el villano
+    //@ Esta funcion toma un parametro para elegir la accion del villano, y la ejecuta.
     public function accionvillano($accion)
     {
         $intaccion = intval($accion);

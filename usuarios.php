@@ -1,7 +1,9 @@
 <?php
 
 //@ Proyecto por Pedro Pina Menéndez
+//@ Esta es la pagina usada por los usuarios Adminstradores para gestionar partidas, usuarios, y crear usuarios
 
+//@ En esta pagina está la unica manera de crear un usuario con el rol de administrador
 
 include "DAO.class.php";
 session_start();

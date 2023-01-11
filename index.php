@@ -1,7 +1,7 @@
 <?php
 
-// Proyecto por Pedro Pina Menéndez
-
+//@ Proyecto por Pedro Pina Menéndez
+//@ Esta es la pantalla principal de la aplicacion. Aqui se eligen el personaje del jugador y el enemigo
 
 include "DAO.class.php";
 session_start();
@@ -44,8 +44,11 @@ session_start();
 
 <body>
     <?php
+    //$ Con esta pantalla incorporamos el menú a nuestra pagina
     include "menu.php";
+
     $DAO = new DAO();
+
     //@ Si pulsamos en el boton de Comenzar, comprueba si esta iniciada la sesion, crea un objeto partida y nos lleva a partida.php
     if (isset($_POST['comenzar'])) {
         if (isset($_SESSION['usuario'])) {
@@ -63,7 +66,7 @@ session_start();
             header("Location: login.php");
         }
     } else {
-        //@ Formulario para seleccionar personajes
+        //@ Este es el formulario que se usa para seleccionar personajes
     ?>
         <div id="contenedorindex">
             <form action="index.php" method="post">
@@ -76,6 +79,8 @@ session_start();
                 </select>
                 <h1 id="labelmalo">Escoge a tu enemigo</h1>
 
+                <!-- //@ En este select se selecciona el enemigo. Algunos enemigos solo están disponibles
+                     //@ si el usuario los ha desbloqueado -->
                 <select name="enemigo" id="enemigo">
                     <option value="firulais">Facil</option>
                     <?php
