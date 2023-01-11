@@ -202,7 +202,7 @@ $errores = array();
             <th>Personaje</th>
             <th>Enemigo</th>
             <th>Resultado</th>
-            <th>Usuario</th>
+            <th>ID de la partida</th>
         </tr>
         <?php
         for ($i = 0; $i < count($arrayconcreto); $i++) {
@@ -212,7 +212,7 @@ $errores = array();
                 <td><?php echo $partida->getpersonaje(); ?></td>
                 <td><?php echo $partida->getenemigo(); ?></td>
                 <td><?php echo $partida->getresultado(); ?></td>
-                <td><?php echo $partida->getusuario(); ?></td>
+                <td><?php echo $partida->getid(); ?></td>
             </tr>
 
 

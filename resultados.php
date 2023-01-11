@@ -77,7 +77,7 @@ include "DAO.class.php";
 
         $villano = $partida->getvillano();
         $villanonombre = $villano->getNombre();
-
+        unset($_SESSION['partida']);
         $resultado = $_SESSION['resultado'];
 
 
@@ -89,7 +89,7 @@ include "DAO.class.php";
         $arrayprogreso = $DAO->devolverArrayProgresos();
         $arrayconcretoprogreso = array();
 
-        for ($i = 1; $i < count($arrayprogreso); $i++) {
+        for ($i = 0; $i < count($arrayprogreso); $i++) {
             $objeto = $arrayprogreso[$i];
             if ($objeto->getid() == $usuario->getuserName()) {
                 array_push($arrayconcretoprogreso, $objeto);

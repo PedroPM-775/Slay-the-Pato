@@ -11,11 +11,11 @@
 
 .topnav a {
   float: right;
-  color: black;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
+  color: black;
   margin-left: 1px;
   margin-bottom: 0px;
 }
@@ -42,4 +42,14 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+#titulo {
+  font-size: 20pt;
+  font-weight: bolder;
+  font-style: italic;
+  margin-right: 12%;
+  border: 2px solid black;
+}
+#titulo:hover {
+  text-decoration: none;
 }

@@ -27,6 +27,7 @@
                                 ?>>Usuarios</a>
         <a href="perfil.php">Perfil</a>
         <a href="index.php">Pagina Principal</a>
+        <a id="titulo">SLAY THE PATO</a>
 
         <div id="usuario">
 
