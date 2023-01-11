@@ -84,7 +84,7 @@ session_start();
                         $arrayprogreso = $DAO->devolverArrayProgresos();
                         $arrayconcretoprogreso = array();
 
-                        for ($i = 1; $i < count($arrayprogreso); $i++) {
+                        for ($i = 0; $i < count($arrayprogreso); $i++) {
                             $objeto = $arrayprogreso[$i];
                             if ($objeto->getid() == $usuario->getuserName()) {
                                 array_push($arrayconcretoprogreso, $objeto);
@@ -94,8 +94,7 @@ session_start();
                         var_dump($progreso);
 
                         if ($progreso->desbloqueado(2)) {
-
-                            echo " <option value='akuma'>Normal</option>";
+                            echo "<option value='akuma'> Normal</option>";
                         }
                         if ($progreso->desbloqueado(3)) {
 

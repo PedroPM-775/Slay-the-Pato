@@ -139,19 +139,20 @@ $errores = array();
             $arrayprogreso = $DAO->devolverArrayProgresos();
             $arrayconcretoprogreso = array();
 
-            for ($i = 1; $i < count($arrayprogreso); $i++) {
+            for ($i = 0; $i < count($arrayprogreso); $i++) {
                 $objeto = $arrayprogreso[$i];
                 if ($objeto->getid() == $usuario->getuserName()) {
                     array_push($arrayconcretoprogreso, $objeto);
                 }
             }
+
+            $progreso = $arrayconcretoprogreso[0];
             ?>
 
             <h4>Elige tu foto de perfil </h4>
             <select name="foto">
                 <?php
 
-                $progreso = $arrayconcretoprogreso[0];
                 if ($progreso->desbloqueado(4)) {
                     echo "<option value='uno' >PatoDefecto</option>";
                 }

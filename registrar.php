@@ -126,7 +126,7 @@ if (isset($_SESSION['usuario'])) {
             array_push($datos, $objeto);
 
             $DAO->escribirArrayUsuarios($datos);
-            $progreso = new Progreso($_POST['username']);
+            $progreso = new Progreso($_POST['username'], 1, 0, 0, 1, 0, 0, 0, 0);
             $arrayprogresos = $DAO->devolverArrayProgresos();
             array_push($arrayprogresos, $progreso);
             $DAO->escribirArrayProgresos($arrayprogresos);

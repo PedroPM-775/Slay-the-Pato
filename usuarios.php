@@ -123,9 +123,9 @@ if (!$usuario->Admin()) {
             $stringtrim = ltrim($string);
             array_push($introducir, $stringtrim);
 
-            array_push($introducir, $areabuenatrim);
             $string = $_POST['username'];
             $stringtrim = ltrim($string);
+            array_push($introducir, $stringtrim);
 
             $rol = $_POST['rol'];
             array_push($introducir, $rol);
@@ -135,10 +135,11 @@ if (!$usuario->Admin()) {
 
             $DAO->escribirArrayUsuarios($datos);
 
-            $progreso = new Progreso($_POST['username']);
+            $progreso = new Progreso($_POST['username'], 1, 0, 0, 1, 0, 0, 0, 0);
             if ($rol == "Administrador") {
                 $progreso->cuentaadmin();
             }
+            var_dump($progreso);
             $arrayprogresos = $DAO->devolverArrayProgresos();
             array_push($arrayprogresos, $progreso);
             $DAO->escribirArrayProgresos($arrayprogresos);
@@ -159,7 +160,7 @@ if (!$usuario->Admin()) {
 
 
             //@ Usando un bucle for dentro de otro, imprimo todos los elementos del archivo en distintas filas de la tabla
-            for ($i = 0; $i < count($datos); $i++) {
+            for ($i = 1; $i < count($datos); $i++) {
                 $usuario = $datos[$i];
             ?>
                 <tr>
@@ -302,10 +303,98 @@ if (!$usuario->Admin()) {
                     <td><?php echo $partida->getid(); ?></td>
                     <?php echo "<td> <a href = 'borrarPartida.php?fila=$i'>Eliminar</a> </td>"; ?>
                 </tr>
-        <?php
+            <?php
             }
-        }
-        ?>
+
+
+            ?>
+
+        </table>
+        <h2>Contenido desbloqueado por cada jugador: </h2>
+        <table id="tablapartidas" aria-describedby="Tabla rellena con datos de tablas.csv">
+            <tr>
+                <th>Nombre</th>
+                <th>Modo Facil</th>
+                <th>Modo Normal</th>
+                <th>Modo Dificil</th>
+                <th>Foto de perfil 1</th>
+                <th>Foto de perfil 2</th>
+                <th>Foto de perfil 3</th>
+                <th>Foto de perfil 4</th>
+                <th>Foto de perfil 5</th>
+            </tr>
+            <?php
+
+            $arrayprogreso = $DAO->devolverArrayProgresos();
+            for ($i = 0; $i < count($arrayprogreso); $i++) {
+                $progreso = $arrayprogreso[$i];
+            ?>
+                <tr>
+                    <td><?php echo $progreso->getid(); ?></td>
+                    <td>
+                        <?php if ($progreso->desbloqueado(1)) {
+                            echo "Desbloqueado";
+                        } else {
+                            echo "No Desbloqueado";
+                        } ?>
+                    </td>
+                    <td>
+                        <?php if ($progreso->desbloqueado(2)) {
+                            echo "Desbloqueado";
+                        } else {
+                            echo "No Desbloqueado";
+                        } ?>
+                    </td>
+                    <td>
+                        <?php if ($progreso->desbloqueado(3)) {
+                            echo "Desbloqueado";
+                        } else {
+                            echo "No Desbloqueado";
+                        } ?>
+                    </td>
+                    <td>
+                        <?php if ($progreso->desbloqueado(4)) {
+                            echo "Desbloqueado";
+                        } else {
+                            echo "No Desbloqueado";
+                        } ?>
+                    </td>
+                    <td>
+                        <?php if ($progreso->desbloqueado(5)) {
+                            echo "Desbloqueado";
+                        } else {
+                            echo "No Desbloqueado";
+                        } ?>
+                    </td>
+                    <td>
+                        <?php if ($progreso->desbloqueado(6)) {
+                            echo "Desbloqueado";
+                        } else {
+                            echo "No Desbloqueado";
+                        } ?>
+                    </td>
+                    <td>
+                        <?php if ($progreso->desbloqueado(7)) {
+                            echo "Desbloqueado";
+                        } else {
+                            echo "No Desbloqueado";
+                        } ?>
+                    </td>
+                    <td>
+                        <?php if ($progreso->desbloqueado(8)) {
+                            echo "Desbloqueado";
+                        } else {
+                            echo "No Desbloqueado";
+                        } ?>
+                    </td>
+                </tr>
+            <?php
+            }
+            ?>
+        </table>
+    <?php
+    }
+    ?>
 </body>
 
 </html>

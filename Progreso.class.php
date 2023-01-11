@@ -183,17 +183,17 @@ class Progreso
     }
 
     //@ Metodos de verdad
-    public function __construct($id)
+    public function __construct($id, $uno, $dos, $tres, $cuatro, $cinco, $seis, $siete, $ocho)
     {
         $this->setid($id);
-        $this->setdesbloqueo(1, 1);
-        $this->setdesbloqueo(2, 0);
-        $this->setdesbloqueo(3, 0);
-        $this->setdesbloqueo(4, 1);
-        $this->setdesbloqueo(5, 0);
-        $this->setdesbloqueo(6, 0);
-        $this->setdesbloqueo(7, 0);
-        $this->setdesbloqueo(8, 0);
+        $this->setdesbloqueo(1, $uno);
+        $this->setdesbloqueo(2, $dos);
+        $this->setdesbloqueo(3, $tres);
+        $this->setdesbloqueo(4, $cuatro);
+        $this->setdesbloqueo(5, $cinco);
+        $this->setdesbloqueo(6, $seis);
+        $this->setdesbloqueo(7, $siete);
+        $this->setdesbloqueo(8, $ocho);
     }
 
     public function cuentaadmin()
