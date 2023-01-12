@@ -159,7 +159,7 @@ if (isset($_SESSION['usuario'])) {
 
         <br> <br>
         <div id="contenedorform">
-            <h1>¡REGISTRATE!</h1>
+            <h1 style="color:black">¡REGISTRATE!</h1>
             <form name="usuarios" action='registrar.php' method="post">
                 <label> Nombre </label> <input type="text" name="nome" value="<?php if (
                                                                                     isset($_POST['nome'])
